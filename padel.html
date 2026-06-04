@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#070B0A" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="A.OS" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="icon" type="image/svg+xml" href="icon.svg" />
+<title>Padel · A.OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("patron_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
+<link rel="stylesheet" href="theme.css" />
+<style>
+  .statGrid { display:grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap: var(--space-3); margin-bottom: var(--space-6); }
+  .stat { border:1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); padding: var(--space-4); }
+  .statV { font-family: var(--font-display); font-style: italic; font-weight:600; font-size: 2rem; letter-spacing:-.01em; font-variant-numeric: tabular-nums; }
+  .statL { font-family: var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color: var(--muted); margin-top:2px; }
+  .matchList { display:flex; flex-direction:column; gap: var(--space-2); }
+  .match { display:flex; align-items:center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border:1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); }
+  .match:hover { border-color: var(--border-strong); }
+  .res { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-family:var(--font-mono); font-weight:700; font-size:13px; flex-shrink:0; }
+  .res.w { background: var(--pos-soft); color: var(--pos); border:1px solid var(--pos-line); }
+  .res.l { background: var(--neg-soft); color: var(--neg); border:1px solid var(--neg-line); }
+  .mMain { flex:1; min-width:0; }
+  .mScore { font-family: var(--font-mono); font-weight:600; font-size: var(--text-sm); color: var(--fg); }
+  .mMeta { font-family: var(--font-mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .iconBtn { appearance:none; background:transparent; border:1px solid var(--border); color:var(--muted); width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:13px;flex-shrink:0; }
+  .iconBtn:hover { color:var(--fg); border-color:var(--border-strong); }
+  .sectionHead { display:flex; align-items:center; justify-content:space-between; margin: var(--space-6) 0 var(--space-4); }
+  .sectionHead h2 { font-family: var(--font-display); font-style:italic; font-weight:500; font-size: var(--text-xl); margin:0; }
+  .empty { font-family: var(--font-mono); font-size:12px; color: var(--muted); padding: var(--space-5); text-align:center; }
+  .gearNote { font-family: var(--font-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color: var(--muted); }
+</style>
+</head>
+<body>
+<main class="page grain-overlay">
+  <div class="shell">
+    <header class="header">
+      <div>
+        <h1 class="title">Padel</h1>
+        <p class="subtitle">Match log · Adidas Metalbone HRD+</p>
+      </div>
+      <div class="headerControls">
+        <a class="backLink" href="index.html">← Dashboard</a>
+        <span id="themeSeg"></span>
+      </div>
+    </header>
+
+    <div class="statGrid">
+      <div class="stat"><div class="statV" id="sPlayed">0</div><div class="statL">Matches</div></div>
+      <div class="stat"><div class="statV" id="sWin">0%</div><div class="statL">Win rate</div></div>
+      <div class="stat"><div class="statV" id="sStreak">0</div><div class="statL">Streak</div></div>
+      <div class="stat"><div class="statV" id="sRecord">0–0</div><div class="statL">W – L</div></div>
+    </div>
+
+    <div class="sectionHead">
+      <h2>Matches</h2>
+      <button class="btn btn-ghost" id="addMatch">+ Log match</button>
+    </div>
+    <div class="matchList" id="matchList"></div>
+  </div>
+</main>
+
+<div class="overlay" id="overlay" style="display:none">
+  <div class="panel">
+    <div class="panelHead">
+      <div><div class="panelEyebrow">Padel</div><h2 class="panelTitle" id="mTitle">Log match</h2></div>
+      <button class="panelClose" id="mClose">×</button>
+    </div>
+    <div id="mBody"></div>
+    <div class="panelActions">
+      <button class="btn btn-ghost" id="mDelete" style="margin-right:auto; display:none">Delete</button>
+      <button class="btn btn-ghost" id="mCancel">Cancel</button>
+      <button class="btn btn-primary" id="mSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="theme.js"></script>
+<script>
+  try { document.getElementById('themeSeg').innerHTML = Patron.switcherHtml(); } catch(e){}
+  const KEY='padel_standalone_v1';
+  function storeGet(){ try{return JSON.parse(localStorage.getItem(KEY));}catch(e){return null;} }
+  function storeSet(v){ try{localStorage.setItem(KEY,JSON.stringify(v));}catch(e){} }
+  const uid=()=>Math.random().toString(36).slice(2,9);
+  let state = storeGet() || { matches: [] };
+  if(!Array.isArray(state.matches)) state.matches=[];
+  const save=()=>storeSet(state);
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+  function sorted(){ return [...state.matches].sort((a,b)=> (b.date||'').localeCompare(a.date||'')); }
+  function renderStats(){
+    const m=state.matches, n=m.length;
+    const wins=m.filter(x=>x.result==='W').length;
+    document.getElementById('sPlayed').textContent=n;
+    document.getElementById('sWin').textContent=n?Math.round(wins/n*100)+'%':'0%';
+    document.getElementById('sRecord').textContent=wins+'–'+(n-wins);
+    // streak from most recent
+    let st=0,sign=null; for(const x of sorted()){ if(sign===null){sign=x.result; st=1;} else if(x.result===sign) st++; else break; }
+    document.getElementById('sStreak').textContent=(n? (sign==='W'?'+':'-')+st : '0');
+  }
+  function renderList(){
+    const el=document.getElementById('matchList'); const arr=sorted();
+    if(!arr.length){ el.innerHTML='<div class="empty">No matches yet — log your first.</div>'; return; }
+    el.innerHTML=arr.map(x=>{
+      const d=x.date?new Date(x.date+'T00:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'}):'—';
+      const meta=[d, x.partner?'w/ '+esc(x.partner):'', x.opponents?'vs '+esc(x.opponents):'', x.club?esc(x.club):''].filter(Boolean).join(' · ');
+      return `<div class="match" data-id="${x.id}">
+        <span class="res ${x.result==='W'?'w':'l'}">${x.result||'?'}</span>
+        <div class="mMain"><div class="mScore">${esc(x.score||'—')}</div><div class="mMeta">${meta}</div></div>
+        <button class="iconBtn" data-edit="${x.id}">✎</button></div>`;
+    }).join('');
+  }
+  function render(){ renderStats(); renderList(); }
+
+  const overlay=document.getElementById('overlay'); let editId=null;
+  function open(id){
+    editId=id||null; const isE=!!id;
+    document.getElementById('mDelete').style.display=isE?'inline-flex':'none';
+    document.getElementById('mTitle').textContent=isE?'Edit match':'Log match';
+    const x=isE?state.matches.find(m=>m.id===id):{date:new Date().toISOString().slice(0,10),result:'W',partner:'',opponents:'',score:'',club:'',notes:''};
+    document.getElementById('mBody').innerHTML=`
+      <div class="fieldGrid">
+        <div class="field"><label class="fieldLabel">Date</label><input class="fieldInput" id="f_date" type="date" value="${x.date||''}"></div>
+        <div class="field"><label class="fieldLabel">Result</label>
+          <select class="fieldInput" id="f_result"><option value="W"${x.result==='W'?' selected':''}>Win</option><option value="L"${x.result==='L'?' selected':''}>Loss</option></select></div>
+        <div class="field fieldFull"><label class="fieldLabel">Score (e.g. 6-3 4-6 6-2)</label><input class="fieldInput" id="f_score" value="${esc(x.score)}" placeholder="6-3 6-4"></div>
+        <div class="field"><label class="fieldLabel">Partner</label><input class="fieldInput" id="f_partner" value="${esc(x.partner)}"></div>
+        <div class="field"><label class="fieldLabel">Opponents</label><input class="fieldInput" id="f_opp" value="${esc(x.opponents)}"></div>
+        <div class="field fieldFull"><label class="fieldLabel">Club / notes</label><input class="fieldInput" id="f_club" value="${esc(x.club)}" placeholder="club, conditions…"></div>
+      </div>`;
+    overlay.style.display='grid';
+  }
+  function close(){ overlay.style.display='none'; editId=null; }
+  document.getElementById('mClose').onclick=close;
+  document.getElementById('mCancel').onclick=close;
+  overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+  document.getElementById('addMatch').onclick=()=>open();
+  document.getElementById('matchList').addEventListener('click',e=>{const b=e.target.closest('[data-edit]'); if(b) open(b.dataset.edit);});
+  document.getElementById('mSave').onclick=()=>{
+    const rec={ date:document.getElementById('f_date').value, result:document.getElementById('f_result').value,
+      score:document.getElementById('f_score').value.trim(), partner:document.getElementById('f_partner').value.trim(),
+      opponents:document.getElementById('f_opp').value.trim(), club:document.getElementById('f_club').value.trim() };
+    if(editId){ Object.assign(state.matches.find(m=>m.id===editId),rec); }
+    else { state.matches.push({id:uid(),...rec}); }
+    save(); close(); render();
+  };
+  document.getElementById('mDelete').onclick=()=>{ if(editId){ state.matches=state.matches.filter(m=>m.id!==editId); save(); close(); render(); } };
+  render();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="db.js"></script>
+<script src="cloud-sync.js"></script>
+</body>
+</html>

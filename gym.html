@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="A.OS" />
+<meta name="apple-mobile-web-app-title" content="Patron" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="icon" type="image/svg+xml" href="icon.svg" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
@@ -21,7 +21,7 @@ img{max-width:100%;height:auto}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("A.OS_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("patron_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
 <title>Progressive Overload Coach</title>
 
 <!-- =============================================================
@@ -48,23 +48,25 @@ const CONFIG = {
   // Training split. Most people use Push/Pull/Legs but you can rename
   // these to "Upper", "Lower", "Full Body", "Day A", anything.
   days: [
-    { id: "push", name: "Push" },
-    { id: "pull", name: "Pull" },
-    { id: "legs", name: "Legs" }
+    { id: "push",     name: "Push" },
+    { id: "pull",     name: "Pull" },
+    { id: "legs",     name: "Legs + Core" },
+    { id: "upper",    name: "Upper" },
+    { id: "legsarms", name: "Legs + Arms" }
   ],
 
   // Split rotation — the order your training days cycle through. Use day
   // ids from `days` above, plus "rest" for off-days. The pill at the top
   // of the app reads this + splitAnchor to compute "what day is today".
-  splitRotation: ["push", "pull", "legs", "rest"],
+  splitRotation: ["push", "pull", "legs", "rest", "upper", "legsarms", "rest"],
 
   // Anchor: pair a real calendar date with which split day fell on it.
   // The rotation advances from this point. Set `date` to a recent day
   // when you knew what split you were on, and `splitId` to that day.
   // Edit this if your split drifts.
   splitAnchor: {
-    date: "2026-05-12",
-    splitId: "rest"
+    date: "2026-06-01",
+    splitId: "push"
   },
 
   // Progression rule: hit this many reps on the top set → coach tells you
@@ -95,15 +97,58 @@ const CONFIG = {
   // First-run defaults. Once a user logs anything, they edit through
   // the in-app + / gear buttons; this block stays as the seed.
   defaultExercises: [
-    { name: "Bench press",     gym: "comm", day: "push", repMin: 5, repMax: 8,  step: 2.5, startWeight: 60 },
-    { name: "Overhead press",  gym: "comm", day: "push", repMin: 5, repMax: 8,  step: 2.5, startWeight: 35 },
-    { name: "Tricep pushdown", gym: "comm", day: "push", repMin: 8, repMax: 12, step: 2.5, startWeight: 25 },
-    { name: "Pull-ups",        gym: "both", day: "pull", repMin: 5, repMax: 10, step: 1,   startWeight: 0, bw: true },
-    { name: "Barbell row",     gym: "comm", day: "pull", repMin: 6, repMax: 10, step: 2.5, startWeight: 50 },
-    { name: "Bicep curl",      gym: "comm", day: "pull", repMin: 8, repMax: 12, step: 1.25,startWeight: 15 },
-    { name: "Back squat",      gym: "comm", day: "legs", repMin: 5, repMax: 8,  step: 5,   startWeight: 80 },
-    { name: "Romanian deadlift", gym: "comm", day: "legs", repMin: 6, repMax: 10, step: 5, startWeight: 60 },
-    { name: "Leg press",       gym: "comm", day: "legs", repMin: 8, repMax: 12, step: 5,   startWeight: 100 }
+    // LUNDI — PUSH (pecs · épaules · triceps)
+    { name: "Barbell bench press",     gym: "comm", day: "push", repMin: 5,  repMax: 6,  step: 2.5, startWeight: 60 },
+    { name: "Incline dumbbell press",  gym: "comm", day: "push", repMin: 8,  repMax: 10, step: 2,   startWeight: 22 },
+    { name: "Cable fly (low→high)",    gym: "comm", day: "push", repMin: 12, repMax: 15, step: 2.5, startWeight: 15 },
+    { name: "Weighted dips",           gym: "both", day: "push", repMin: 8,  repMax: 12, step: 2.5, startWeight: 0, bw: true },
+    { name: "Dumbbell shoulder press", gym: "comm", day: "push", repMin: 8,  repMax: 10, step: 2,   startWeight: 20 },
+    { name: "Lateral raises",          gym: "comm", day: "push", repMin: 15, repMax: 20, step: 1,   startWeight: 8 },
+    { name: "Cable triceps pushdown",  gym: "comm", day: "push", repMin: 12, repMax: 15, step: 2.5, startWeight: 25 },
+
+    // MARDI — PULL (lats · dos · biceps · avant-bras)
+    { name: "Conventional deadlift",   gym: "comm", day: "pull", repMin: 4,  repMax: 5,  step: 5,   startWeight: 90 },
+    { name: "Wide pull-ups",           gym: "both", day: "pull", repMin: 6,  repMax: 10, step: 1,   startWeight: 0, bw: true },
+    { name: "Barbell row (pronated)",  gym: "comm", day: "pull", repMin: 6,  repMax: 8,  step: 2.5, startWeight: 50 },
+    { name: "Seated cable row (neutral)", gym: "comm", day: "pull", repMin: 10, repMax: 12, step: 2.5, startWeight: 45 },
+    { name: "Face pull",               gym: "comm", day: "pull", repMin: 15, repMax: 20, step: 2.5, startWeight: 20 },
+    { name: "Barbell curl",            gym: "comm", day: "pull", repMin: 8,  repMax: 10, step: 1.25,startWeight: 25 },
+    { name: "Preacher curl",           gym: "comm", day: "pull", repMin: 10, repMax: 12, step: 1.25,startWeight: 20 },
+    { name: "Reverse curl",            gym: "comm", day: "pull", repMin: 12, repMax: 15, step: 1.25,startWeight: 15 },
+
+    // MERCREDI — LEGS + CORE
+    { name: "Barbell squat",           gym: "comm", day: "legs", repMin: 5,  repMax: 7,  step: 5,   startWeight: 80 },
+    { name: "Romanian deadlift",       gym: "comm", day: "legs", repMin: 8,  repMax: 10, step: 5,   startWeight: 60 },
+    { name: "Hip thrust",              gym: "comm", day: "legs", repMin: 10, repMax: 12, step: 5,   startWeight: 60 },
+    { name: "Leg extension",           gym: "comm", day: "legs", repMin: 12, repMax: 15, step: 5,   startWeight: 40 },
+    { name: "Leg curl",                gym: "comm", day: "legs", repMin: 12, repMax: 15, step: 5,   startWeight: 35 },
+    { name: "Standing calf raises",    gym: "comm", day: "legs", repMin: 12, repMax: 15, step: 5,   startWeight: 50 },
+    { name: "Seated calf raises",      gym: "comm", day: "legs", repMin: 15, repMax: 20, step: 2.5, startWeight: 30 },
+    { name: "Hanging leg raises",      gym: "both", day: "legs", repMin: 12, repMax: 15, step: 1,   startWeight: 0, bw: true },
+    { name: "Cable crunch",            gym: "comm", day: "legs", repMin: 15, repMax: 20, step: 2.5, startWeight: 25 },
+
+    // VENDREDI — UPPER (épaules · chest · back · triceps)
+    { name: "Overhead press (OHP)",    gym: "comm", day: "upper", repMin: 5,  repMax: 7,  step: 2.5, startWeight: 35 },
+    { name: "Incline barbell bench",   gym: "comm", day: "upper", repMin: 6,  repMax: 8,  step: 2.5, startWeight: 45 },
+    { name: "Arnold press",            gym: "comm", day: "upper", repMin: 10, repMax: 12, step: 2,   startWeight: 16 },
+    { name: "One-arm dumbbell row",    gym: "comm", day: "upper", repMin: 8,  repMax: 10, step: 2,   startWeight: 26 },
+    { name: "Neutral-grip lat pulldown", gym: "comm", day: "upper", repMin: 8, repMax: 12, step: 2.5, startWeight: 45 },
+    { name: "Cable lateral raises",    gym: "comm", day: "upper", repMin: 15, repMax: 20, step: 1,   startWeight: 7 },
+    { name: "Reverse pec deck",        gym: "comm", day: "upper", repMin: 12, repMax: 15, step: 2.5, startWeight: 30 },
+    { name: "Skull crushers",          gym: "comm", day: "upper", repMin: 8,  repMax: 12, step: 2.5, startWeight: 25 },
+    { name: "Overhead triceps ext.",   gym: "comm", day: "upper", repMin: 12, repMax: 15, step: 2.5, startWeight: 20 },
+
+    // SAMEDI — LEGS + ARMS + CORE
+    { name: "Front squat",             gym: "comm", day: "legsarms", repMin: 5,  repMax: 7,  step: 5,   startWeight: 50 },
+    { name: "Leg press",               gym: "comm", day: "legsarms", repMin: 10, repMax: 12, step: 5,   startWeight: 100 },
+    { name: "Leg curl",                gym: "comm", day: "legsarms", repMin: 10, repMax: 12, step: 5,   startWeight: 35 },
+    { name: "Leg extension",           gym: "comm", day: "legsarms", repMin: 12, repMax: 15, step: 5,   startWeight: 40 },
+    { name: "Hammer curl (heavy)",     gym: "comm", day: "legsarms", repMin: 10, repMax: 12, step: 2,   startWeight: 16 },
+    { name: "Preacher curl (DB)",      gym: "comm", day: "legsarms", repMin: 10, repMax: 12, step: 2,   startWeight: 14 },
+    { name: "Wrist curl",              gym: "comm", day: "legsarms", repMin: 15, repMax: 20, step: 2.5, startWeight: 20 },
+    { name: "Cable triceps extension", gym: "comm", day: "legsarms", repMin: 12, repMax: 15, step: 2.5, startWeight: 25 },
+    { name: "Hanging leg raises",      gym: "both", day: "legsarms", repMin: 12, repMax: 15, step: 1,   startWeight: 0, bw: true },
+    { name: "Ab wheel",                gym: "both", day: "legsarms", repMin: 5,  repMax: 15, step: 1,   startWeight: 0, bw: true }
   ]
 };
 </script>
@@ -1323,7 +1368,7 @@ img, video, canvas, svg { max-width: 100%; }
 
 .hidden { display: none !important; }
 
-/* --- A.OS display type --- */
+/* --- Patron display type --- */
 .po-title, .wt-num, .po-rx-headline, .po-tw-summary-num, .po-stat-val,
 .wt-overlay-title, .po-modal h3, .wt-viewer-weight, .wt-comp-headline {
   font-family: var(--font-display); font-style: italic;
@@ -3428,9 +3473,9 @@ img, video, canvas, svg { max-width: 100%; }
   // just only on this device (data stays in your browser).
   // ============================================================
   // Supabase keys come from localStorage (pasted in Settings) or, if blank, from
-  // A.OSDB which loads them from /api/config (Vercel env vars). No keys in code.
-  const SUPABASE_URL = ((localStorage.getItem('po_supabase_url') || '').trim()) || ((window.A.OSDB && A.OSDB.cfgUrl && A.OSDB.cfgUrl()) || '');
-  const SUPABASE_KEY = ((localStorage.getItem('po_supabase_key') || '').trim()) || ((window.A.OSDB && A.OSDB.cfgKey && A.OSDB.cfgKey()) || '');
+  // PatronDB which loads them from /api/config (Vercel env vars). No keys in code.
+  const SUPABASE_URL = ((localStorage.getItem('po_supabase_url') || '').trim()) || ((window.PatronDB && PatronDB.cfgUrl && PatronDB.cfgUrl()) || '');
+  const SUPABASE_KEY = ((localStorage.getItem('po_supabase_key') || '').trim()) || ((window.PatronDB && PatronDB.cfgKey && PatronDB.cfgKey()) || '');
   const APP_KEY = 'po-coach';
   // Note: po_coach_photos IS synced, but only URL-pointer entries ride
   // the wire. The actual JPEG lives in Supabase Storage. pcCollectState
@@ -3644,8 +3689,6 @@ img, video, canvas, svg { max-width: 100%; }
 })();
 </script>
 
-<script>(function(){function cur(){try{return localStorage.getItem("A.OS_theme")||"nocturne";}catch(e){return "nocturne";}}function paint(){var c=cur();document.querySelectorAll(".themeBtn").forEach(function(b){b.classList.toggle("themeBtnActive",b.dataset.theme===c);});}document.addEventListener("click",function(e){var b=e.target.closest(".themeBtn");if(!b)return;var n=b.dataset.theme;document.documentElement.setAttribute("data-theme",n);try{localStorage.setItem("A.OS_theme",n);}catch(e){}paint();});paint();})();</script>
+<script>(function(){function cur(){try{return localStorage.getItem("patron_theme")||"nocturne";}catch(e){return "nocturne";}}function paint(){var c=cur();document.querySelectorAll(".themeBtn").forEach(function(b){b.classList.toggle("themeBtnActive",b.dataset.theme===c);});}document.addEventListener("click",function(e){var b=e.target.closest(".themeBtn");if(!b)return;var n=b.dataset.theme;document.documentElement.setAttribute("data-theme",n);try{localStorage.setItem("patron_theme",n);}catch(e){}paint();});paint();})();</script>
 </body>
 </html>
-
-
