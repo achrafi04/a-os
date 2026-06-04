@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#0C0C12" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="A.OS" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="icon" type="image/svg+xml" href="icon.svg" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+
+<title>Research · A.OS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("patron_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
+
+<link rel="stylesheet" href="theme.css" />
+
+<style>
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-4); }
+  .grid.wide { grid-template-columns: 1fr; }
+
+  /* Pomodoro */
+  .pomo { align-items:center; text-align:center; gap: var(--space-4); }
+  .pomoModes { display:inline-flex; background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-pill); padding:3px; gap:2px; }
+  .pomoMode { appearance:none; background:transparent; border:0; color:var(--muted); font-family:var(--font-ui); font-size:12px; font-weight:600; padding:6px 14px; border-radius:var(--radius-pill); cursor:pointer; transition: color var(--duration) var(--ease), background var(--duration) var(--ease); }
+  .pomoMode.active { background: var(--brand-soft); color: var(--fg); }
+  .pomoClock { font-family: var(--font-display); font-weight:600; font-size: 4.5rem; line-height:1; letter-spacing:-0.04em; font-variant-numeric: tabular-nums; color: var(--fg); }
+  .pomoSub { font-family: var(--font-mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color: var(--muted); }
+  .pomoBtns { display:flex; gap: var(--space-2); justify-content:center; }
+
+  /* Deadlines */
+  .dlList { display:flex; flex-direction:column; gap: var(--space-2); }
+  .dl { display:flex; align-items:center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border:1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); }
+  .dl:hover { border-color: var(--border-strong); }
+  .dlMain { display:flex; flex-direction:column; gap:3px; min-width:0; flex:1; }
+  .dlTitle { font-family: var(--font-ui); font-weight:600; font-size: var(--text-sm); color: var(--fg); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .dlMeta { font-family: var(--font-mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color: var(--muted); }
+  .dlCount { font-family: var(--font-display); font-weight:600; font-size: var(--text-lg); font-variant-numeric: tabular-nums; flex-shrink:0; }
+  .dlCount.soon { color: var(--brand-2); }
+  .dlCount.urgent { color: #FF8A8A; }
+  .dlCount.over { color: #FF8A8A; opacity:.7; }
+  .tag { display:inline-flex; align-items:center; padding:2px 9px; border-radius: var(--radius-pill); font-family: var(--font-mono); font-size:10px; font-weight:600; letter-spacing:0.06em; background: var(--brand-soft); color: var(--brand-2); border:1px solid var(--brand-line); }
+
+  /* Tracks */
+  .trackHead { display:flex; align-items:flex-start; justify-content:space-between; gap: var(--space-3); }
+  .statusPill { display:inline-flex; align-items:center; gap:6px; padding:3px 10px; border-radius: var(--radius-pill); font-family: var(--font-mono); font-size:10px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; background: var(--surface-2); color: var(--muted-strong); border:1px solid var(--border); }
+  .trackNext { font-size: var(--text-sm); line-height:1.5; color: var(--muted-strong); }
+  .trackNext b { color: var(--fg); font-weight:600; }
+
+  .iconBtn { appearance:none; background:transparent; border:1px solid var(--border); color:var(--muted); width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:13px; line-height:1; flex-shrink:0; }
+  .iconBtn:hover { color:var(--fg); border-color:var(--border-strong); }
+  .sectionHead { display:flex; align-items:center; justify-content:space-between; margin: var(--space-8) 0 var(--space-4); }
+  .sectionHead h2 { font-family: var(--font-display); font-weight:600; font-size: var(--text-xl); letter-spacing:-0.02em; margin:0; }
+  .empty { font-family: var(--font-mono); font-size:12px; color: var(--muted); padding: var(--space-4); text-align:center; }
+</style>
+</head>
+<body>
+<main class="page grain-overlay">
+  <div class="shell">
+
+    <header class="header">
+      <div>
+        <h1 class="title">Research</h1>
+        <p class="subtitle">PhD · deadlines · deep work</p>
+      </div>
+      <div class="headerControls">
+        <a class="backLink" href="index.html">← Dashboard</a>
+        <span id="themeSeg"></span>
+      </div>
+    </header>
+
+    <!-- FOCUS TIMER -->
+    <div class="grid wide">
+      <section class="card pomo">
+        <div class="pomoModes" id="pomoModes">
+          <button class="pomoMode active" data-mode="work">Focus</button>
+          <button class="pomoMode" data-mode="break">Break</button>
+        </div>
+        <div class="pomoClock" id="pomoClock">25:00</div>
+        <div class="pomoSub" id="pomoSub">0 sessions today</div>
+        <div class="pomoBtns">
+          <button class="btn btn-primary" id="pomoToggle">Start</button>
+          <button class="btn btn-ghost" id="pomoReset">Reset</button>
+          <button class="btn btn-ghost" id="pomoCfg">⚙</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- DEADLINES -->
+    <div class="sectionHead">
+      <h2>Deadlines</h2>
+      <button class="btn btn-ghost" id="addDl">+ Add</button>
+    </div>
+    <div class="dlList" id="dlList"></div>
+
+    <!-- TRACKS -->
+    <div class="sectionHead">
+      <h2>Tracks</h2>
+      <button class="btn btn-ghost" id="addTrack">+ Add</button>
+    </div>
+    <div class="grid" id="trackGrid"></div>
+
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" style="display:none">
+  <div class="panel">
+    <div class="panelHead">
+      <div>
+        <div class="panelEyebrow" id="mEyebrow">Deadline</div>
+        <h2 class="panelTitle" id="mTitle">New deadline</h2>
+      </div>
+      <button class="panelClose" id="mClose">×</button>
+    </div>
+    <div id="mBody"></div>
+    <div class="panelActions">
+      <button class="btn btn-ghost" id="mDelete" style="margin-right:auto; display:none">Delete</button>
+      <button class="btn btn-ghost" id="mCancel">Cancel</button>
+      <button class="btn btn-primary" id="mSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="theme.js"></script>
+<script>
+  // Theme switcher into the header (same as every page)
+  try { document.getElementById('themeSeg').innerHTML = Patron.switcherHtml(); } catch(e){}
+
+  // ---------- storage (suite convention) ----------
+  const KEY = 'research_standalone_v1';
+  function storeGet(){ try { return JSON.parse(localStorage.getItem(KEY)); } catch(e){ return null; } }
+  function storeSet(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+
+  const todayKey = () => { const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
+  const uid = () => Math.random().toString(36).slice(2,9);
+
+  // ---------- seed (everything editable) ----------
+  const SEED = {
+    deadlines: [
+      { id: uid(), title: 'Confirm Mitacs internship dates', date: '', track: 'Mitacs' },
+    ],
+    tracks: [
+      { id: uid(), name: 'SplitFL-P4',  status: 'active', next: 'Train Transformer on CICIDS2017 · formal Gaussian DP (ε=10) · cut-layer sweep' },
+      { id: uid(), name: 'PrivacyGuard', status: 'writing', next: 'SANIG formalization · Mousika-style P4 figure · CMT submission' },
+      { id: uid(), name: 'Quantum FL (Mitacs/UQO)', status: 'planned', next: 'Confirm dates · pre-departure form · visa/work permit' },
+    ],
+    focus: { sessions: {}, cfg: { work: 25, brk: 5 } }
+  };
+  // strip the empty placeholder deadline if it has no date
+  let state = storeGet() || SEED;
+  if (!state.focus) state.focus = { sessions:{}, cfg:{work:25,brk:5} };
+  if (!state.focus.cfg) state.focus.cfg = { work:25, brk:5 };
+  if (!Array.isArray(state.deadlines)) state.deadlines = [];
+  if (!Array.isArray(state.tracks)) state.tracks = [];
+  const save = () => storeSet(state);
+
+  // ======================================================
+  //  POMODORO
+  // ======================================================
+  let mode = 'work', remaining = state.focus.cfg.work * 60, running = false, tick = null;
+
+  const clockEl = document.getElementById('pomoClock');
+  const subEl   = document.getElementById('pomoSub');
+  const toggleEl= document.getElementById('pomoToggle');
+
+  function fmt(s){ const m=Math.floor(s/60), ss=s%60; return String(m).padStart(2,'0')+':'+String(ss).padStart(2,'0'); }
+  function sessionsToday(){ return state.focus.sessions[todayKey()] || 0; }
+  function renderClock(){
+    clockEl.textContent = fmt(remaining);
+    const n = sessionsToday();
+    subEl.textContent = n + (n===1?' session':' sessions') + ' today';
+    document.title = (running ? fmt(remaining)+' · ' : '') + 'Research · A.OS';
+  }
+  function setMode(m){
+    mode = m; running = false; clearInterval(tick); tick=null;
+    remaining = (m==='work' ? state.focus.cfg.work : state.focus.cfg.brk) * 60;
+    toggleEl.textContent = 'Start';
+    document.querySelectorAll('.pomoMode').forEach(b=>b.classList.toggle('active', b.dataset.mode===m));
+    renderClock();
+  }
+  function complete(){
+    clearInterval(tick); tick=null; running=false; toggleEl.textContent='Start';
+    if (mode==='work'){
+      const k = todayKey();
+      state.focus.sessions[k] = (state.focus.sessions[k]||0) + 1; save();
+    }
+    try { new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQ==').play(); } catch(e){}
+    setMode(mode==='work' ? 'break' : 'work');
+  }
+  toggleEl.onclick = () => {
+    if (running){ running=false; clearInterval(tick); tick=null; toggleEl.textContent='Resume'; }
+    else {
+      running=true; toggleEl.textContent='Pause';
+      tick = setInterval(()=>{ remaining--; if(remaining<=0){ complete(); return; } renderClock(); }, 1000);
+    }
+  };
+  document.getElementById('pomoReset').onclick = () => setMode(mode);
+  document.getElementById('pomoModes').onclick = (e) => { const b=e.target.closest('.pomoMode'); if(b) setMode(b.dataset.mode); };
+  document.getElementById('pomoCfg').onclick = () => {
+    const w = prompt('Focus minutes:', state.focus.cfg.work); if(w===null) return;
+    const b = prompt('Break minutes:', state.focus.cfg.brk); if(b===null) return;
+    state.focus.cfg.work = Math.max(1, parseInt(w)||25);
+    state.focus.cfg.brk  = Math.max(1, parseInt(b)||5);
+    save(); setMode(mode);
+  };
+
+  // ======================================================
+  //  DEADLINES
+  // ======================================================
+  function daysTo(dateStr){
+    if(!dateStr) return null;
+    const t = new Date(dateStr+'T00:00:00'); const now = new Date(); now.setHours(0,0,0,0);
+    return Math.round((t-now)/86400000);
+  }
+  function countLabel(d){
+    if(d===null) return {txt:'—', cls:''};
+    if(d<0) return {txt:Math.abs(d)+'d ago', cls:'over'};
+    if(d===0) return {txt:'today', cls:'urgent'};
+    if(d<=7) return {txt:d+'d', cls:'urgent'};
+    if(d<=30) return {txt:d+'d', cls:'soon'};
+    return {txt:d+'d', cls:''};
+  }
+  function renderDeadlines(){
+    const list = document.getElementById('dlList');
+    const sorted = [...state.deadlines].sort((a,b)=>{
+      if(!a.date) return 1; if(!b.date) return -1; return new Date(a.date)-new Date(b.date);
+    });
+    if(!sorted.length){ list.innerHTML = '<div class="empty">No deadlines yet — add your first.</div>'; return; }
+    list.innerHTML = sorted.map(d=>{
+      const dd = daysTo(d.date); const c = countLabel(dd);
+      const dateTxt = d.date ? new Date(d.date+'T00:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'}) : 'no date';
+      return `<div class="dl" data-id="${d.id}">
+        <div class="dlMain">
+          <span class="dlTitle">${esc(d.title)}</span>
+          <span class="dlMeta">${dateTxt}${d.track?' · ':''}${d.track?'<span class="tag">'+esc(d.track)+'</span>':''}</span>
+        </div>
+        <span class="dlCount ${c.cls}">${c.txt}</span>
+        <button class="iconBtn" data-edit="${d.id}">✎</button>
+      </div>`;
+    }).join('');
+  }
+
+  // ======================================================
+  //  TRACKS
+  // ======================================================
+  function renderTracks(){
+    const grid = document.getElementById('trackGrid');
+    if(!state.tracks.length){ grid.innerHTML = '<div class="empty">No tracks yet.</div>'; return; }
+    grid.innerHTML = state.tracks.map(t=>`
+      <section class="card" data-id="${t.id}">
+        <div class="trackHead">
+          <span class="cardName">${esc(t.name)}</span>
+          <button class="iconBtn" data-tedit="${t.id}">✎</button>
+        </div>
+        <span class="statusPill">${esc(t.status||'—')}</span>
+        <p class="trackNext"><b>Next:</b> ${esc(t.next||'—')}</p>
+      </section>`).join('');
+  }
+
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+  // ======================================================
+  //  MODAL (handles deadlines + tracks)
+  // ======================================================
+  const overlay = document.getElementById('overlay');
+  let editing = null; // {kind:'dl'|'track', id|null}
+
+  function openModal(kind, id){
+    editing = { kind, id: id||null };
+    const isEdit = !!id;
+    document.getElementById('mDelete').style.display = isEdit ? 'inline-flex' : 'none';
+    const body = document.getElementById('mBody');
+
+    if(kind==='dl'){
+      const d = isEdit ? state.deadlines.find(x=>x.id===id) : {title:'',date:'',track:''};
+      document.getElementById('mEyebrow').textContent = 'Deadline';
+      document.getElementById('mTitle').textContent = isEdit ? 'Edit deadline' : 'New deadline';
+      body.innerHTML = `
+        <div class="fieldGrid">
+          <div class="field fieldFull"><label class="fieldLabel">Title</label>
+            <input class="fieldInput" id="f_title" value="${esc(d.title)}" placeholder="e.g. ASONAM full paper"></div>
+          <div class="field"><label class="fieldLabel">Date</label>
+            <input class="fieldInput" id="f_date" type="date" value="${d.date||''}"></div>
+          <div class="field"><label class="fieldLabel">Track / tag</label>
+            <input class="fieldInput" id="f_track" value="${esc(d.track)}" placeholder="SplitFL-P4"></div>
+        </div>`;
+    } else {
+      const t = isEdit ? state.tracks.find(x=>x.id===id) : {name:'',status:'active',next:''};
+      document.getElementById('mEyebrow').textContent = 'Track';
+      document.getElementById('mTitle').textContent = isEdit ? 'Edit track' : 'New track';
+      body.innerHTML = `
+        <div class="fieldGrid">
+          <div class="field"><label class="fieldLabel">Name</label>
+            <input class="fieldInput" id="f_name" value="${esc(t.name)}" placeholder="SplitFL-P4"></div>
+          <div class="field"><label class="fieldLabel">Status</label>
+            <input class="fieldInput" id="f_status" value="${esc(t.status)}" placeholder="active / writing / planned"></div>
+          <div class="field fieldFull"><label class="fieldLabel">Next step</label>
+            <input class="fieldInput" id="f_next" value="${esc(t.next)}" placeholder="What's the immediate next action?"></div>
+        </div>`;
+    }
+    overlay.style.display = 'grid';
+  }
+  function closeModal(){ overlay.style.display='none'; editing=null; }
+
+  document.getElementById('mClose').onclick = closeModal;
+  document.getElementById('mCancel').onclick = closeModal;
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) closeModal(); });
+
+  document.getElementById('mSave').onclick = () => {
+    if(!editing) return;
+    if(editing.kind==='dl'){
+      const title = document.getElementById('f_title').value.trim();
+      if(!title) return;
+      const rec = { title, date: document.getElementById('f_date').value, track: document.getElementById('f_track').value.trim() };
+      if(editing.id){ Object.assign(state.deadlines.find(x=>x.id===editing.id), rec); }
+      else { state.deadlines.push({ id: uid(), ...rec }); }
+    } else {
+      const name = document.getElementById('f_name').value.trim();
+      if(!name) return;
+      const rec = { name, status: document.getElementById('f_status').value.trim(), next: document.getElementById('f_next').value.trim() };
+      if(editing.id){ Object.assign(state.tracks.find(x=>x.id===editing.id), rec); }
+      else { state.tracks.push({ id: uid(), ...rec }); }
+    }
+    save(); closeModal(); renderDeadlines(); renderTracks();
+  };
+  document.getElementById('mDelete').onclick = () => {
+    if(!editing || !editing.id) return;
+    if(editing.kind==='dl') state.deadlines = state.deadlines.filter(x=>x.id!==editing.id);
+    else state.tracks = state.tracks.filter(x=>x.id!==editing.id);
+    save(); closeModal(); renderDeadlines(); renderTracks();
+  };
+
+  // wire add + edit triggers
+  document.getElementById('addDl').onclick = () => openModal('dl');
+  document.getElementById('addTrack').onclick = () => openModal('track');
+  document.getElementById('dlList').addEventListener('click', e=>{ const b=e.target.closest('[data-edit]'); if(b) openModal('dl', b.dataset.edit); });
+  document.getElementById('trackGrid').addEventListener('click', e=>{ const b=e.target.closest('[data-tedit]'); if(b) openModal('track', b.dataset.tedit); });
+
+  // ---------- first paint ----------
+  setMode('work');
+  renderDeadlines();
+  renderTracks();
+</script>
+</body>
+</html>
