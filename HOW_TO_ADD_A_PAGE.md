@@ -1,4 +1,4 @@
-# Adding a new page to Rowan
+# Adding a new page to A.OS
 
 Every page shares one design system (`theme.css` + `theme.js`), so a new
 page looks and behaves like the rest without copying any styling.
@@ -39,3 +39,5 @@ back-to-dashboard link, and the suite styling.
 Each page keeps its own data in `localStorage` under a unique key, e.g.
 `sleep_standalone_v1`. The dashboard ticker/cards can read it if you match
 that pattern (see `statFor()` in `index.html`).
+
+

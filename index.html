@@ -4,11 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="manifest" href="manifest.webmanifest" />
-<meta name="theme-color" content="#0C0C12" />
+<meta name="theme-color" content="#070B0A" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Patron" />
+<meta name="apple-mobile-web-app-title" content="A.OS" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="icon" type="image/svg+xml" href="icon.svg" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
@@ -19,31 +19,31 @@ img{max-width:100%;height:auto}
 @media (max-width:480px){input,select,textarea{font-size:16px !important}}
 @supports (padding:max(0px)){body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}}
 </style>
-<title>Rowan · dashboard</title>
+<title>A.OS · dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("patron_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("A.OS_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
 <style>
 /* ============================================================
- * Rowan — the main dashboard. Bento hub linking every app
- * in the Patron suite + a shared "Today's vitals" tile (Whoop /
+ * A.OS — the main dashboard. Bento hub linking every app
+ * in the A.OS suite + a shared "Today's vitals" tile (Whoop /
  * Apple Watch / Manual). Same token system + 3 themes as the suite.
  * ============================================================ */
 :root {
   color-scheme: dark;
-  --bg: #0C0C12; --bg-elevated: #15151F;
+  --bg: #070B0A; --bg-elevated: #0E1614;
   --surface: rgba(255,255,255,0.028); --surface-2: rgba(255,255,255,0.055);
-  --fg: #F3F2F8; --muted: rgba(243,242,248,0.50); --muted-strong: rgba(243,242,248,0.74);
+  --fg: #E9F1EC; --muted: rgba(233,241,236,0.50); --muted-strong: rgba(233,241,236,0.74);
   --border: rgba(255,255,255,0.08); --border-strong: rgba(255,255,255,0.17);
-  --brand: #8B7CFF; --brand-2: #C7BBFF; --brand-ink: #130E2E;
-  --brand-soft: rgba(139,124,255,0.12); --brand-line: rgba(139,124,255,0.28); --brand-glow: rgba(139,124,255,0.42);
+  --brand: #34C796; --brand-2: #74EBC2; --brand-ink: #04130D;
+  --brand-soft: rgba(52,199,150,0.12); --brand-line: rgba(52,199,150,0.28); --brand-glow: rgba(52,199,150,0.42);
   --pos: #46E0A8; --pos-soft: rgba(70,224,168,0.12); --pos-line: rgba(70,224,168,0.26);
   --neg: #FB7185; --neg-soft: rgba(251,113,133,0.12); --neg-line: rgba(251,113,133,0.26);
-  --warn: #FBBF24; --warn-soft: rgba(251,191,36,0.10); --warn-line: rgba(251,191,36,0.26);
+  --warn: #E8B84B; --warn-soft: rgba(251,191,36,0.10); --warn-line: rgba(251,191,36,0.26);
   --track: rgba(255,255,255,0.06);
   --card-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 18px 44px -30px rgba(0,0,0,0.85);
-  --glow-1: rgba(139,124,255,0.12); --glow-2: rgba(70,224,168,0.05);
+  --glow-1: rgba(52,199,150,0.12); --glow-2: rgba(70,224,168,0.05);
   --grain-opacity: 0.05; --overlay: rgba(6,6,12,0.66);
   --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem;
   --space-5:1.25rem; --space-6:1.5rem; --space-8:2rem; --space-10:2.5rem; --space-12:3rem; --space-16:4rem;
@@ -52,38 +52,38 @@ img{max-width:100%;height:auto}
   --text-xl:1.375rem; --text-2xl:1.75rem; --text-3xl:2.5rem;
   --ease: cubic-bezier(0.2,0.8,0.2,1); --ease-premium: cubic-bezier(0.16,1,0.3,1);
   --duration-fast:120ms; --duration:200ms;
-  --font-display:'Space Grotesk'; --font-ui:'Hanken Grotesk'; --font-mono:'JetBrains Mono';
+  --font-display:'Newsreader'; --font-ui:'Hanken Grotesk'; --font-mono:'JetBrains Mono';
 }
 [data-theme="aurora"] {
   color-scheme: dark;
-  --bg: #080913; --bg-elevated: #12131F;
-  --surface: rgba(150,160,255,0.045); --surface-2: rgba(150,160,255,0.08);
+  --bg: #04100C; --bg-elevated: #0A1A14;
+  --surface: rgba(90,255,205,0.045); --surface-2: rgba(90,255,205,0.08);
   --fg: #EEF0FF; --muted: rgba(220,225,255,0.52); --muted-strong: rgba(220,225,255,0.76);
-  --border: rgba(150,160,255,0.11); --border-strong: rgba(150,160,255,0.22);
-  --brand: #8B7BFF; --brand-2: #B9ABFF; --brand-ink: #0A0922;
-  --brand-soft: rgba(139,123,255,0.15); --brand-line: rgba(139,123,255,0.32); --brand-glow: rgba(124,107,255,0.6);
+  --border: rgba(90,255,205,0.11); --border-strong: rgba(90,255,205,0.22);
+  --brand: #2FD9A0; --brand-2: #7CF2CC; --brand-ink: #03130C;
+  --brand-soft: rgba(47,217,160,0.15); --brand-line: rgba(47,217,160,0.32); --brand-glow: rgba(47,217,160,0.6);
   --pos: #4FE3D0; --pos-soft: rgba(79,227,208,0.13); --pos-line: rgba(79,227,208,0.28);
   --neg: #FF6FA5; --neg-soft: rgba(255,111,165,0.13); --neg-line: rgba(255,111,165,0.28);
   --warn: #FFC65C; --warn-soft: rgba(255,198,92,0.11); --warn-line: rgba(255,198,92,0.28);
-  --track: rgba(160,170,255,0.09);
-  --card-shadow: 0 0 0 1px rgba(140,130,255,0.05) inset, 0 22px 56px -28px rgba(78,60,210,0.55);
-  --glow-1: rgba(124,107,255,0.20); --glow-2: rgba(79,227,208,0.13);
+  --track: rgba(90,255,205,0.09);
+  --card-shadow: 0 0 0 1px rgba(60,230,170,0.05) inset, 0 22px 56px -28px rgba(78,60,210,0.55);
+  --glow-1: rgba(47,217,160,0.20); --glow-2: rgba(79,227,208,0.13);
   --grain-opacity: 0.05; --overlay: rgba(5,6,16,0.7);
 }
 [data-theme="daylight"] {
   color-scheme: light;
-  --bg: #F3F2FA; --bg-elevated: #FFFFFF;
+  --bg: #F1F6F3; --bg-elevated: #FFFFFF;
   --surface: #FFFFFF; --surface-2: #FAF9FF;
-  --fg: #171622; --muted: rgba(23,22,34,0.52); --muted-strong: rgba(23,22,34,0.72);
-  --border: rgba(23,22,60,0.10); --border-strong: rgba(23,22,60,0.18);
-  --brand: #6A45FF; --brand-2: #8E6BFF; --brand-ink: #FFFFFF;
-  --brand-soft: rgba(106,69,255,0.08); --brand-line: rgba(106,69,255,0.24); --brand-glow: rgba(106,69,255,0.28);
+  --fg: #0F1A16; --muted: rgba(15,26,22,0.52); --muted-strong: rgba(15,26,22,0.72);
+  --border: rgba(15,40,30,0.10); --border-strong: rgba(15,40,30,0.18);
+  --brand: #0E9E72; --brand-2: #3FC79A; --brand-ink: #FFFFFF;
+  --brand-soft: rgba(14,158,114,0.08); --brand-line: rgba(14,158,114,0.24); --brand-glow: rgba(14,158,114,0.28);
   --pos: #0E9E64; --pos-soft: rgba(14,158,100,0.10); --pos-line: rgba(14,158,100,0.26);
   --neg: #E11D63; --neg-soft: rgba(225,29,99,0.08); --neg-line: rgba(225,29,99,0.24);
   --warn: #B4690E; --warn-soft: rgba(180,105,14,0.10); --warn-line: rgba(180,105,14,0.24);
-  --track: rgba(23,22,60,0.08);
-  --card-shadow: 0 1px 2px rgba(23,22,60,0.05), 0 16px 34px -24px rgba(23,22,60,0.24);
-  --glow-1: rgba(106,69,255,0.07); --glow-2: rgba(14,158,100,0.04);
+  --track: rgba(15,40,30,0.08);
+  --card-shadow: 0 1px 2px rgba(15,40,30,0.05), 0 16px 34px -24px rgba(15,40,30,0.24);
+  --glow-1: rgba(14,158,114,0.07); --glow-2: rgba(14,158,100,0.04);
   --grain-opacity: 0.02; --overlay: rgba(28,26,52,0.4);
 }
 
@@ -98,7 +98,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--font-ui), -ap
 
 /* Header */
 .header { display:flex; align-items:flex-end; justify-content:space-between; gap: var(--space-4); margin-bottom: var(--space-8); flex-wrap: wrap; }
-.title { font-family: var(--font-display); font-weight: 600; font-size: var(--text-3xl); line-height: 1.0; letter-spacing: -0.03em; margin: 0; }
+.title { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-3xl); line-height: 1.0; letter-spacing: -0.03em; margin: 0; }
 .subtitle { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); margin: 6px 0 0; }
 .themeSeg { display:inline-flex; align-items:center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-pill); padding: 3px; gap: 2px; }
 .themeBtn { appearance:none; background: transparent; border:0; color: var(--muted); font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: 0.02em; padding: 5px 11px 5px 8px; border-radius: var(--radius-pill); cursor: pointer; display:inline-flex; align-items:center; gap:6px; transition: background var(--duration) var(--ease-premium), color var(--duration) var(--ease-premium); }
@@ -112,7 +112,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--font-ui), -ap
 .profileChip { display:inline-flex; align-items:center; gap: 8px; padding: 5px 13px 5px 6px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-pill); color: var(--fg); font-family: var(--font-ui); font-size: 12px; font-weight: 600; cursor: pointer; transition: border-color var(--duration) var(--ease-premium), background var(--duration) var(--ease-premium); }
 .profileChip:hover { border-color: var(--brand-line); background: var(--brand-soft); }
 .profileChipNew { padding: 7px 14px; color: var(--brand); border-color: var(--brand-line); background: var(--brand-soft); }
-.profileAvatar { display:grid; place-items:center; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); font-family: var(--font-display); font-weight: 700; font-size: 12px; }
+.profileAvatar { display:grid; place-items:center; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); font-family: var(--font-display); font-style: italic; font-weight: 700; font-size: 12px; }
 
 /* Daily reminders */
 .reminders { display:flex; align-items:center; flex-wrap:wrap; gap: var(--space-2); margin-bottom: var(--space-5); }
@@ -133,13 +133,13 @@ body { background: var(--bg); color: var(--fg); font-family: var(--font-ui), -ap
 .card { position: relative; display:flex; flex-direction:column; gap: var(--space-3); min-height: 132px; padding: var(--space-5); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--card-shadow); text-decoration:none; color: var(--fg); overflow:hidden; transition: border-color var(--duration) var(--ease-premium), background var(--duration) var(--ease-premium), transform var(--duration) var(--ease-premium), box-shadow var(--duration) var(--ease-premium); }
 .card:hover { border-color: var(--brand-line); background: var(--brand-soft); transform: translateY(-2px); box-shadow: 0 0 40px -18px var(--brand-glow), var(--card-shadow); }
 .cardIcon { display:grid; place-items:center; width: 42px; height: 42px; border-radius: 13px; background: var(--brand-soft); border: 1px solid var(--brand-line); font-size: 20px; flex-shrink:0; }
-.cardName { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); letter-spacing: -0.02em; }
+.cardName { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-lg); letter-spacing: -0.02em; }
 .cardTag { font-size: 12px; color: var(--muted); line-height: 1.4; }
 .cardArrow { position:absolute; top: var(--space-5); right: var(--space-5); color: var(--muted); font-size: 16px; transition: color var(--duration) var(--ease-premium), transform var(--duration) var(--ease-premium); }
 .card:hover .cardArrow { color: var(--brand); transform: translate(2px,-2px); }
 .cardTop { display:flex; align-items:center; gap: var(--space-3); }
 .cardStat { display:flex; flex-direction:column; gap: 2px; margin-top: auto; }
-.cardStatValue { font-family: var(--font-display); font-weight: 600; font-size: var(--text-xl); letter-spacing: -0.02em; color: var(--fg); font-variant-numeric: tabular-nums; }
+.cardStatValue { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-xl); letter-spacing: -0.02em; color: var(--fg); font-variant-numeric: tabular-nums; }
 .cardStatLabel { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 
 /* Vitals tile */
@@ -158,19 +158,19 @@ body { background: var(--bg); color: var(--fg); font-family: var(--font-ui), -ap
 .recRing[data-tone="watch"] .recFill { color: var(--warn); }
 .recRing[data-tone="low"] .recFill { color: var(--neg); }
 .recRing[data-tone="muted"] .recFill { color: var(--muted); }
-.recNum { font-family: var(--font-display); font-weight: 600; font-size: 2.5rem; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.recNum { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 2.5rem; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
 .recUnit { font-size: var(--text-base); color: var(--muted-strong); }
 .recCap { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
 .vMetrics { display:flex; flex-direction:column; gap: var(--space-3); flex:1; min-width: 150px; }
 .vRow { display:flex; align-items:baseline; justify-content:space-between; gap: var(--space-3); padding-bottom: var(--space-2); border-bottom: 1px solid var(--border); }
 .vRow:last-child { border-bottom:0; }
 .vLabel { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-.vVal { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); font-variant-numeric: tabular-nums; }
+.vVal { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-lg); font-variant-numeric: tabular-nums; }
 .vVal em { font-family: var(--font-mono); font-style: normal; font-size: 11px; color: var(--muted); margin-left: 4px; }
 .vitalsFoot { display:flex; align-items:center; justify-content:space-between; gap: var(--space-3); flex-wrap: wrap; }
 .vitalsSync { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .vitalsEmpty { display:flex; flex-direction:column; gap: var(--space-3); justify-content:center; flex:1; }
-.vitalsEmptyTitle { font-family: var(--font-display); font-weight: 600; font-size: var(--text-xl); letter-spacing: -0.02em; }
+.vitalsEmptyTitle { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-xl); letter-spacing: -0.02em; }
 .vitalsEmptyBody { font-size: 13px; color: var(--muted-strong); line-height: 1.55; max-width: 42ch; }
 
 /* Buttons */
@@ -190,7 +190,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--font-ui), -ap
 @keyframes rise { from { opacity:0; transform: translateY(12px) scale(0.98); } to { opacity:1; transform:none; } }
 .panelHead { display:flex; align-items:flex-start; justify-content:space-between; gap: var(--space-3); margin-bottom: var(--space-5); }
 .panelEyebrow { font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--brand); }
-.panelTitle { font-family: var(--font-display); font-weight: 600; font-size: var(--text-2xl); letter-spacing: -0.03em; margin: var(--space-2) 0 0; }
+.panelTitle { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-2xl); letter-spacing: -0.03em; margin: var(--space-2) 0 0; }
 .panelClose { background: transparent; border: 1px solid var(--border); color: var(--muted-strong); font-size: 20px; line-height: 1; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; flex-shrink:0; }
 .panelClose:hover { color: var(--fg); border-color: var(--border-strong); }
 .srcPills { display:flex; gap: var(--space-2); margin-bottom: var(--space-5); flex-wrap: wrap; }
@@ -227,7 +227,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--font-ui), -ap
 @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .tickerItem { display:inline-flex; align-items:center; gap: 11px; padding: 0 var(--space-5); border-right: 1px solid var(--border); white-space: nowrap; color: var(--brand); }
 .tiLabel { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; color: var(--muted); }
-.tiVal { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); letter-spacing: -0.01em; color: var(--fg); font-variant-numeric: tabular-nums; }
+.tiVal { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-lg); letter-spacing: -0.01em; color: var(--fg); font-variant-numeric: tabular-nums; }
 .tiUnit { font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--muted); margin-left: 3px; }
 .tiDelta { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: currentColor; }
 .tiSpark { display:block; flex-shrink:0; }
@@ -239,10 +239,10 @@ body { background: var(--bg); color: var(--fg); font-family: var(--font-ui), -ap
 
 /* How-to steps (Apple Watch manual-copy guide inside the vitals modal) */
 .howto { margin: var(--space-4) 0 var(--space-2); padding: var(--space-4); border: 1px solid var(--brand-line); background: var(--brand-soft); border-radius: var(--radius-md); }
-.howtoTitle { display:flex; align-items:center; gap: 8px; font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); margin-bottom: var(--space-3); }
+.howtoTitle { display:flex; align-items:center; gap: 8px; font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-sm); margin-bottom: var(--space-3); }
 .howtoSteps { list-style: none; margin: 0; padding: 0; display:flex; flex-direction:column; gap: var(--space-3); counter-reset: step; }
 .howtoSteps li { position: relative; padding-left: 34px; font-size: 13px; line-height: 1.5; color: var(--muted-strong); counter-increment: step; }
-.howtoSteps li::before { content: counter(step); position: absolute; left: 0; top: -1px; display:grid; place-items:center; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); font-family: var(--font-display); font-weight: 700; font-size: 12px; }
+.howtoSteps li::before { content: counter(step); position: absolute; left: 0; top: -1px; display:grid; place-items:center; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); font-family: var(--font-display); font-style: italic; font-weight: 700; font-size: 12px; }
 .howtoSteps strong { color: var(--fg); font-weight: 600; }
 .howtoChips { display:flex; flex-wrap:wrap; gap: 6px; margin-top: 6px; }
 .howtoChip { display:inline-block; padding: 3px 9px; border-radius: var(--radius-pill); background: var(--surface-2); border: 1px solid var(--border); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--fg); }
@@ -271,20 +271,20 @@ const APPS = [
 ];
 
 /* ============================================================
- * Theme (shared across the whole suite via patron_theme)
+ * Theme (shared across the whole suite via A.OS_theme)
  * ============================================================ */
 const THEMES = [
-  { key: 'nocturne', label: 'Nocturne', swatch: '#8B7CFF' },
-  { key: 'aurora', label: 'Aurora', swatch: 'linear-gradient(135deg,#8B7BFF,#4FE3D0)' },
-  { key: 'daylight', label: 'Daylight', swatch: '#6A45FF' },
+  { key: 'nocturne', label: 'Nocturne', swatch: '#34C796' },
+  { key: 'aurora', label: 'Aurora', swatch: 'linear-gradient(135deg,#2FD9A0,#4FE3D0)' },
+  { key: 'daylight', label: 'Daylight', swatch: '#0E9E72' },
 ];
-let currentTheme = (function(){ try { return localStorage.getItem('patron_theme') || 'nocturne'; } catch(e){ return 'nocturne'; } })();
+let currentTheme = (function(){ try { return localStorage.getItem('A.OS_theme') || 'nocturne'; } catch(e){ return 'nocturne'; } })();
 if (!THEMES.some(t => t.key === currentTheme)) currentTheme = 'nocturne';
 function applyTheme(name){
   if (!THEMES.some(t => t.key === name)) name = 'nocturne';
   currentTheme = name;
   document.documentElement.setAttribute('data-theme', name);
-  try { localStorage.setItem('patron_theme', name); } catch(e){}
+  try { localStorage.setItem('A.OS_theme', name); } catch(e){}
   render();
 }
 function themeSegHtml(){
@@ -299,8 +299,8 @@ function themeSegHtml(){
  * users enter it manually (or tag it as Apple Watch). Supplements
  * reads it to drive its recovery/sleep recommendations.
  * ============================================================ */
-const HEALTH_KEY = 'patron_health_v1';
-const LEGACY_WHOOP_KEY = 'patron_whoop_data_v1';
+const HEALTH_KEY = 'A.OS_health_v1';
+const LEGACY_WHOOP_KEY = 'A.OS_whoop_data_v1';
 function loadHealth(){
   try {
     let r = localStorage.getItem(HEALTH_KEY);
@@ -362,7 +362,7 @@ function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace
  * Suite-wide profile — collected by the first-run onboarding prompt,
  * read by the apps (name, weight→water, age/sex/goal/training→supplements…).
  * ============================================================ */
-const SUITE_PROFILE_KEY = 'patron_profile_v1';
+const SUITE_PROFILE_KEY = 'A.OS_profile_v1';
 function loadProfile(){ try { const r = localStorage.getItem(SUITE_PROFILE_KEY); return r ? JSON.parse(r) : null; } catch(e){ return null; } }
 function saveProfileObj(p){ try { localStorage.setItem(SUITE_PROFILE_KEY, JSON.stringify(p)); } catch(e){} }
 let profile = loadProfile();
@@ -382,7 +382,7 @@ function headerHtml(){
   const chip = profile
     ? '<button type="button" class="profileChip" data-action="open-profile" title="Edit your profile"><span class="profileAvatar">' + esc((name || '·').charAt(0).toUpperCase()) + '</span>' + esc(name || 'Profile') + '</button>'
     : '<button type="button" class="profileChip profileChipNew" data-action="open-profile">Set up profile</button>';
-  return '<header class="header"><div><h1 class="title">Rowan</h1><p class="subtitle">' + greeting + '</p></div>'
+  return '<header class="header"><div><h1 class="title">A.OS</h1><p class="subtitle">' + greeting + '</p></div>'
     + '<div class="headerControls">' + themeSegHtml() + chip + '</div></header>';
 }
 
@@ -487,7 +487,7 @@ function tickerMetrics(){
 function tickerHtml(){
   const items = tickerMetrics();
   if (!items.length){
-    return '<div class="ticker"><div class="tickerLead"><span class="tickerPulse"></span>Rowan · Live</div>'
+    return '<div class="ticker"><div class="tickerLead"><span class="tickerPulse"></span>A.OS · Live</div>'
       + '<div class="tickerViewport"><div class="tickerTrack" style="animation:none;padding-left:var(--space-5)">'
       + '<span class="tickerItem" style="border:0"><span class="tiLabel">No data yet — add vitals to go live</span></span>'
       + '</div></div></div>';
@@ -500,7 +500,7 @@ function tickerHtml(){
   const seq = items.map(chip).join('');
   // duration scales with item count so speed stays constant regardless of how much data we have
   const dur = Math.max(18, items.length * 6);
-  return '<div class="ticker"><div class="tickerLead"><span class="tickerPulse"></span>Rowan · Live</div>'
+  return '<div class="ticker"><div class="tickerLead"><span class="tickerPulse"></span>A.OS · Live</div>'
     + '<div class="tickerViewport"><div class="tickerTrack" style="animation-duration:' + dur + 's">'
     + seq + seq + '</div></div></div>';
 }
@@ -747,7 +747,7 @@ document.addEventListener('change', e => {
 
 // Reflect theme / vitals changes made in sibling tabs.
 window.addEventListener('storage', e => {
-  if (e.key === 'patron_theme' && e.newValue) { applyTheme(e.newValue); return; }
+  if (e.key === 'A.OS_theme' && e.newValue) { applyTheme(e.newValue); return; }
   if (e.key === HEALTH_KEY || e.key === LEGACY_WHOOP_KEY || e.key === null) { health = loadHealth(); render(); }
 });
 
@@ -775,3 +775,5 @@ applyTheme(currentTheme);
 <script src="cloud-sync.js?v=15"></script>
 </body>
 </html>
+
+

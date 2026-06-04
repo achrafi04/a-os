@@ -4,11 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="manifest" href="manifest.webmanifest" />
-<meta name="theme-color" content="#0C0C12" />
+<meta name="theme-color" content="#070B0A" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Patron" />
+<meta name="apple-mobile-web-app-title" content="A.OS" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="icon" type="image/svg+xml" href="icon.svg" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
@@ -21,12 +21,12 @@ img{max-width:100%;height:auto}
 <title>Finance · standalone</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("patron_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("A.OS_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
 <style>
 
 /* ============================================================
- * Finance — restyled: "Patron" — soft-dark electric-violet
+ * Finance — restyled: "A.OS" — soft-dark electric-violet
  * modern-fintech skin. 3 themes (Nocturne / Aurora / Daylight),
  * all driven by tokens. Logic untouched.
  * ============================================================ */
@@ -34,35 +34,35 @@ img{max-width:100%;height:auto}
 /* ---- Nocturne (default) ---- */
 :root {
   color-scheme: dark;
-  --bg: #0C0C12;
-  --bg-elevated: #15151F;
+  --bg: #070B0A;
+  --bg-elevated: #0E1614;
   --surface: rgba(255,255,255,0.028);
   --surface-2: rgba(255,255,255,0.055);
-  --fg: #F3F2F8;
-  --muted: rgba(243,242,248,0.50);
-  --muted-strong: rgba(243,242,248,0.74);
+  --fg: #E9F1EC;
+  --muted: rgba(233,241,236,0.50);
+  --muted-strong: rgba(233,241,236,0.74);
   --border: rgba(255,255,255,0.08);
   --border-strong: rgba(255,255,255,0.17);
 
-  --brand: #8B7CFF;
-  --brand-2: #C7BBFF;
-  --brand-ink: #130E2E;
-  --brand-soft: rgba(139,124,255,0.12);
-  --brand-line: rgba(139,124,255,0.28);
-  --brand-glow: rgba(139,124,255,0.42);
+  --brand: #34C796;
+  --brand-2: #74EBC2;
+  --brand-ink: #04130D;
+  --brand-soft: rgba(52,199,150,0.12);
+  --brand-line: rgba(52,199,150,0.28);
+  --brand-glow: rgba(52,199,150,0.42);
 
   --pos: #46E0A8; --pos-soft: rgba(70,224,168,0.12); --pos-line: rgba(70,224,168,0.26);
   --neg: #FB7185; --neg-soft: rgba(251,113,133,0.12); --neg-line: rgba(251,113,133,0.26);
-  --warn: #FBBF24; --warn-soft: rgba(251,191,36,0.10); --warn-line: rgba(251,191,36,0.26);
+  --warn: #E8B84B; --warn-soft: rgba(251,191,36,0.10); --warn-line: rgba(251,191,36,0.26);
 
   --track: rgba(255,255,255,0.06);
   --card-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 18px 44px -30px rgba(0,0,0,0.85);
-  --glow-1: rgba(139,124,255,0.12);
+  --glow-1: rgba(52,199,150,0.12);
   --glow-2: rgba(70,224,168,0.05);
   --grain-opacity: 0.05;
   --overlay: rgba(6,6,12,0.66);
-  --tabbar-grad: linear-gradient(to top, rgba(10,10,16,0.92) 55%, transparent);
-  --tabbar-pill: rgba(26,26,36,0.9);
+  --tabbar-grad: linear-gradient(to top, rgba(6,11,10,0.92) 55%, transparent);
+  --tabbar-pill: rgba(14,22,20,0.9);
 
   --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem;
   --space-5:1.25rem; --space-6:1.5rem; --space-8:2rem; --space-10:2.5rem;
@@ -77,7 +77,7 @@ img{max-width:100%;height:auto}
   --ease-premium: cubic-bezier(0.16,1,0.3,1);
   --duration-fast:120ms; --duration:200ms;
 
-  --font-display:'Space Grotesk';
+  --font-display:'Newsreader';
   --font-ui:'Hanken Grotesk';
   --font-mono:'JetBrains Mono';
 }
@@ -85,30 +85,30 @@ img{max-width:100%;height:auto}
 /* ---- Aurora (vibrant violet → teal) ---- */
 [data-theme="aurora"] {
   color-scheme: dark;
-  --bg: #080913;
-  --bg-elevated: #12131F;
-  --surface: rgba(150,160,255,0.045);
-  --surface-2: rgba(150,160,255,0.08);
+  --bg: #04100C;
+  --bg-elevated: #0A1A14;
+  --surface: rgba(90,255,205,0.045);
+  --surface-2: rgba(90,255,205,0.08);
   --fg: #EEF0FF;
   --muted: rgba(220,225,255,0.52);
   --muted-strong: rgba(220,225,255,0.76);
-  --border: rgba(150,160,255,0.11);
-  --border-strong: rgba(150,160,255,0.22);
+  --border: rgba(90,255,205,0.11);
+  --border-strong: rgba(90,255,205,0.22);
 
-  --brand: #8B7BFF;
-  --brand-2: #B9ABFF;
-  --brand-ink: #0A0922;
-  --brand-soft: rgba(139,123,255,0.15);
-  --brand-line: rgba(139,123,255,0.32);
-  --brand-glow: rgba(124,107,255,0.6);
+  --brand: #2FD9A0;
+  --brand-2: #7CF2CC;
+  --brand-ink: #03130C;
+  --brand-soft: rgba(47,217,160,0.15);
+  --brand-line: rgba(47,217,160,0.32);
+  --brand-glow: rgba(47,217,160,0.6);
 
   --pos: #4FE3D0; --pos-soft: rgba(79,227,208,0.13); --pos-line: rgba(79,227,208,0.28);
   --neg: #FF6FA5; --neg-soft: rgba(255,111,165,0.13); --neg-line: rgba(255,111,165,0.28);
   --warn: #FFC65C; --warn-soft: rgba(255,198,92,0.11); --warn-line: rgba(255,198,92,0.28);
 
-  --track: rgba(160,170,255,0.09);
-  --card-shadow: 0 0 0 1px rgba(140,130,255,0.05) inset, 0 22px 56px -28px rgba(78,60,210,0.55);
-  --glow-1: rgba(124,107,255,0.20);
+  --track: rgba(90,255,205,0.09);
+  --card-shadow: 0 0 0 1px rgba(60,230,170,0.05) inset, 0 22px 56px -28px rgba(78,60,210,0.55);
+  --glow-1: rgba(47,217,160,0.20);
   --glow-2: rgba(79,227,208,0.13);
   --grain-opacity: 0.05;
   --overlay: rgba(5,6,16,0.7);
@@ -119,30 +119,30 @@ img{max-width:100%;height:auto}
 /* ---- Daylight (light) ---- */
 [data-theme="daylight"] {
   color-scheme: light;
-  --bg: #F3F2FA;
+  --bg: #F1F6F3;
   --bg-elevated: #FFFFFF;
   --surface: #FFFFFF;
   --surface-2: #FAF9FF;
-  --fg: #171622;
-  --muted: rgba(23,22,34,0.52);
-  --muted-strong: rgba(23,22,34,0.72);
-  --border: rgba(23,22,60,0.10);
-  --border-strong: rgba(23,22,60,0.18);
+  --fg: #0F1A16;
+  --muted: rgba(15,26,22,0.52);
+  --muted-strong: rgba(15,26,22,0.72);
+  --border: rgba(15,40,30,0.10);
+  --border-strong: rgba(15,40,30,0.18);
 
-  --brand: #6A45FF;
-  --brand-2: #8E6BFF;
+  --brand: #0E9E72;
+  --brand-2: #3FC79A;
   --brand-ink: #FFFFFF;
-  --brand-soft: rgba(106,69,255,0.08);
-  --brand-line: rgba(106,69,255,0.24);
-  --brand-glow: rgba(106,69,255,0.28);
+  --brand-soft: rgba(14,158,114,0.08);
+  --brand-line: rgba(14,158,114,0.24);
+  --brand-glow: rgba(14,158,114,0.28);
 
   --pos: #0E9E64; --pos-soft: rgba(14,158,100,0.10); --pos-line: rgba(14,158,100,0.26);
   --neg: #E11D63; --neg-soft: rgba(225,29,99,0.08); --neg-line: rgba(225,29,99,0.24);
   --warn: #B4690E; --warn-soft: rgba(180,105,14,0.10); --warn-line: rgba(180,105,14,0.24);
 
-  --track: rgba(23,22,60,0.08);
-  --card-shadow: 0 1px 2px rgba(23,22,60,0.05), 0 16px 34px -24px rgba(23,22,60,0.24);
-  --glow-1: rgba(106,69,255,0.07);
+  --track: rgba(15,40,30,0.08);
+  --card-shadow: 0 1px 2px rgba(15,40,30,0.05), 0 16px 34px -24px rgba(15,40,30,0.24);
+  --glow-1: rgba(14,158,114,0.07);
   --glow-2: rgba(14,158,100,0.04);
   --grain-opacity: 0.02;
   --overlay: rgba(28,26,52,0.4);
@@ -193,7 +193,7 @@ body {
 }
 .back:hover { background: color-mix(in srgb, var(--brand) 18%, transparent); border-color: var(--brand); }
 .backArrow { font-size: 14px; line-height: 1; }
-.title { font-family: var(--font-display); font-weight: 600; font-size: var(--text-3xl); line-height: 1.0; letter-spacing: -0.03em; color: var(--fg); margin: 0; }
+.title { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-3xl); line-height: 1.0; letter-spacing: -0.03em; color: var(--fg); margin: 0; }
 .subtitle { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); margin: 0; }
 
 /* Theme + currency segmented controls */
@@ -209,7 +209,7 @@ body {
 
 /* Section */
 .section { margin-bottom: var(--space-10); }
-.sectionEyebrow { font-family: var(--font-display); font-weight: 600; font-size: var(--text-xl); letter-spacing: -0.02em; color: var(--fg); margin-bottom: var(--space-4); display:flex; align-items:baseline; justify-content:space-between; gap: var(--space-3); }
+.sectionEyebrow { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-xl); letter-spacing: -0.02em; color: var(--fg); margin-bottom: var(--space-4); display:flex; align-items:baseline; justify-content:space-between; gap: var(--space-3); }
 .sectionEyebrow > span:first-child { display:inline-flex; align-items:center; gap: 10px; }
 .sectionEyebrow > span:first-child::before { content:''; width: 7px; height: 18px; border-radius: 3px; background: var(--brand); box-shadow: 0 0 12px -2px var(--brand-glow); }
 .sectionCount { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
@@ -219,7 +219,7 @@ body {
 .nwHero { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap: var(--space-4); margin-bottom: var(--space-5); }
 .nwHeroFirstRun { align-items: stretch; }
 .nwHeroLabel { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
-.nwHeroNum { font-family: var(--font-display); font-size: 46px; font-weight: 600; line-height: 1.0; letter-spacing: -0.03em; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.nwHeroNum { font-family: var(--font-display); font-style: italic; font-size: 46px; font-weight: 600; line-height: 1.0; letter-spacing: -0.03em; margin-top: 6px; font-variant-numeric: tabular-nums; }
 .nwHeroBreakdown { font-family: var(--font-mono); font-size: 11px; color: var(--muted); margin-top: 8px; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
 .nwHeroMain { flex: 1; min-width: 0; }
 .nwHeroNumRow { display:inline-flex; align-items:baseline; gap: var(--space-3); flex-wrap: wrap; }
@@ -235,7 +235,7 @@ body {
 /* Import trigger */
 .importTrigger { display:inline-flex; align-items:center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); color: var(--fg); cursor: pointer; text-align:left; transition: border-color var(--duration) var(--ease), background var(--duration) var(--ease), transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease); font-family: inherit; }
 .importTrigger:hover { border-color: var(--brand-line); background: var(--brand-soft); transform: translateY(-1px); box-shadow: 0 0 36px -16px var(--brand-glow); }
-.importTriggerIcon { display:grid; place-items:center; width: 34px; height: 34px; border-radius: 12px; background: var(--brand); color: var(--brand-ink); font-family: var(--font-display); font-weight: 600; font-size: 17px; flex-shrink:0; }
+.importTriggerIcon { display:grid; place-items:center; width: 34px; height: 34px; border-radius: 12px; background: var(--brand); color: var(--brand-ink); font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 17px; flex-shrink:0; }
 .importTriggerText { display:flex; flex-direction:column; gap: 3px; min-width: 0; }
 .importTriggerTitle { font-size: var(--text-sm); font-weight: 700; line-height: 1.3; color: var(--fg); white-space: nowrap; }
 .nwHero .importTrigger { min-width: 288px; }
@@ -254,14 +254,14 @@ body {
 @keyframes importRise { from { opacity:0; transform: translateY(12px) scale(0.98); } to { opacity:1; transform:none; } }
 .importHead { display:flex; justify-content:space-between; align-items:flex-start; gap: var(--space-3); margin-bottom: var(--space-5); }
 .importEyebrow { font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--brand); }
-.importTitle { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.5rem, 3.2vw, 2rem); line-height: 1.05; letter-spacing: -0.03em; margin: var(--space-2) 0 0; color: var(--fg); }
+.importTitle { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: clamp(1.5rem, 3.2vw, 2rem); line-height: 1.05; letter-spacing: -0.03em; margin: var(--space-2) 0 0; color: var(--fg); }
 .importTitle em { font-style: normal; color: var(--brand); }
 .importClose { background: transparent; border: 1px solid var(--border); color: var(--muted-strong); font-size: 22px; line-height: 1; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; transition: color var(--duration) var(--ease), border-color var(--duration) var(--ease); flex-shrink:0; }
 .importClose:hover { color: var(--fg); border-color: var(--border-strong); }
 .importDesc { color: var(--muted-strong); font-size: var(--text-sm); line-height: 1.55; margin: 0 0 var(--space-4); }
 .dropZone { display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--space-2); padding: var(--space-8) var(--space-4); border: 1.5px dashed var(--border-strong); border-radius: var(--radius-lg); background: var(--brand-soft); text-align:center; }
 .dropIcon { display:grid; place-items:center; width: 50px; height: 50px; border-radius: 16px; background: var(--brand); color: var(--brand-ink); font-size: 22px; font-weight: 600; margin-bottom: var(--space-2); }
-.dropTitle { font-family: var(--font-display); font-weight: 600; font-size: var(--text-xl); color: var(--fg); }
+.dropTitle { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-xl); color: var(--fg); }
 .dropSub { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .setupNote { margin: var(--space-4) 0 0; padding: var(--space-3) var(--space-4); border-left: 2px solid var(--warn-line); background: var(--warn-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: var(--text-xs); line-height: 1.55; color: var(--muted-strong); }
 .setupNote strong { color: var(--warn); font-weight: 600; }
@@ -292,7 +292,7 @@ body {
 .donutStage { position: relative; display:flex; align-items:center; justify-content:center; margin: var(--space-3) 0; }
 .donutSvg { width: 162px; height: 162px; }
 .donutCenter { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; }
-.donutNum { font-family: var(--font-display); font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.donutNum { font-family: var(--font-display); font-style: italic; font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
 .donutSub { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
 .donutEmpty { text-align:center; color: var(--muted); font-size: var(--text-sm); padding: var(--space-3) 0; }
 .donutLegend { display:flex; flex-direction:column; gap: 8px; margin-top: var(--space-3); }
@@ -305,7 +305,7 @@ body {
 @media (max-width: 720px) { .accountsGrid { grid-template-columns: 1fr; } }
 .accountCard { display:flex; flex-direction:column; gap: var(--space-3); padding: var(--space-5); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--card-shadow); }
 .accountHead { display:flex; align-items:baseline; justify-content:space-between; }
-.accountLabel { font-family: var(--font-display); font-weight: 600; font-size: var(--text-base); letter-spacing: -0.01em; color: var(--fg); }
+.accountLabel { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-base); letter-spacing: -0.01em; color: var(--fg); }
 .accountTotal { font-family: var(--font-mono); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .accountTotalPct { font-size: 10px; font-weight: 400; letter-spacing: 0.02em; color: var(--muted); margin-left: 6px; font-variant-numeric: tabular-nums; }
 .accountList { display:flex; flex-direction:column; gap: 2px; }
@@ -378,7 +378,7 @@ body {
 
 /* Subs */
 .subsHero { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap: var(--space-3); margin-bottom: var(--space-4); }
-.subsHeroNum { font-family: var(--font-display); font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; margin-top: 6px; }
+.subsHeroNum { font-family: var(--font-display); font-style: italic; font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; margin-top: 6px; }
 .subsHeroNumSuffix { font-family: var(--font-ui); font-size: 13px; color: var(--muted); font-weight: 500; margin-left: 5px; }
 .subsHeroSub { font-size: 11px; color: var(--muted); margin-top: 5px; }
 .subRow { display:grid; grid-template-columns: 1fr auto auto; align-items:center; gap: var(--space-3); padding: 13px 15px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 8px; }
@@ -393,7 +393,7 @@ body {
 .subToggleDot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
 .subToggle.on .subToggleDot { background: var(--brand); box-shadow: 0 0 5px var(--brand-glow); }
 .subRowCost { text-align:right; line-height: 1.15; }
-.subRowCostBig { font-family: var(--font-display); font-size: 21px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.subRowCostBig { font-family: var(--font-display); font-style: italic; font-size: 21px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
 .subRowCostUnit { font-family: var(--font-mono); font-size: 10px; color: var(--muted); margin-top: 2px; }
 .subRowCostBilled { font-size: 10px; color: var(--muted); margin-top: 2px; }
 .subRowActions { display:flex; flex-direction:column; gap: 5px; align-items:center; }
@@ -422,7 +422,7 @@ body {
 .ordHead { display:grid; grid-template-columns: 1fr auto auto; gap: var(--space-3); align-items:baseline; }
 .ordName { font-size: var(--text-base); font-weight: 700; color: var(--fg); }
 .ordCard.deducted .ordName { text-decoration: line-through; text-decoration-color: var(--muted); }
-.ordAmt { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.ordAmt { font-family: var(--font-display); font-style: italic; font-size: var(--text-lg); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
 .ordMetaRow { display:flex; flex-wrap:wrap; gap: 6px; align-items:center; }
 .ordPill { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.02em; padding: 4px 10px; border-radius: var(--radius-pill); background: var(--surface-2); color: var(--muted-strong); }
 .ordPill.good { background: var(--pos-soft); color: var(--pos); }
@@ -440,8 +440,8 @@ body {
 /* Wishlist */
 .wishHero { padding: var(--space-5); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: var(--space-4); box-shadow: var(--card-shadow); }
 .wishHeroTop { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap: var(--space-3); margin-bottom: var(--space-4); }
-.wishHeroNum { font-family: var(--font-display); font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; margin-top: 6px; }
-.wishHeroPctNum { font-family: var(--font-display); font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; color: var(--pos); text-align:right; }
+.wishHeroNum { font-family: var(--font-display); font-style: italic; font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; margin-top: 6px; }
+.wishHeroPctNum { font-family: var(--font-display); font-style: italic; font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; color: var(--pos); text-align:right; }
 .wishHeroPctNum.warn { color: var(--warn); } .wishHeroPctNum.bad { color: var(--neg); }
 .wishHeroBar { height: 7px; border-radius: var(--radius-pill); background: var(--track); overflow:hidden; }
 .wishHeroBarFill { height: 100%; background: var(--pos); transition: width 320ms var(--ease-premium); }
@@ -461,7 +461,7 @@ body {
 
 /* Empty states */
 .emptyState { padding: var(--space-8) var(--space-5); text-align:center; background: var(--surface); border: 1px dashed var(--border-strong); border-radius: var(--radius-lg); margin-bottom: var(--space-4); }
-.emptyTitle { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); color: var(--muted-strong); margin-bottom: var(--space-2); }
+.emptyTitle { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-lg); color: var(--muted-strong); margin-bottom: var(--space-2); }
 .emptyBody { font-size: 12px; color: var(--muted); max-width: 38ch; margin: 0 auto; line-height: 1.55; }
 
 /* Tab bar */
@@ -499,7 +499,7 @@ body {
 .importStatus { display:flex; flex-direction:column; align-items:center; gap: var(--space-3); padding: var(--space-8) var(--space-4); text-align:center; }
 .importSpinner { width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--brand-soft); border-top-color: var(--brand); animation: importSpin 800ms linear infinite; }
 @keyframes importSpin { to { transform: rotate(360deg); } }
-.importStatusTitle { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); color: var(--fg); }
+.importStatusTitle { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-lg); color: var(--fg); }
 .importStatusBody { font-size: 12px; color: var(--muted); max-width: 40ch; line-height: 1.55; }
 .importStatus.error .importStatusTitle { color: var(--neg); }
 .dropZone.clickable { cursor: pointer; transition: border-color var(--duration) var(--ease-premium), background var(--duration) var(--ease-premium); }
@@ -750,19 +750,19 @@ const actions = {
 /* ============================================================
  * Constants for views
  * ============================================================ */
-let TYPE_COLORS = { bank: '#8B7CFF', stocks: '#C7BBFF', crypto: '#46E0A8', other: 'rgba(243,242,248,0.4)' };
-let SUBS_COLOR = '#FBBF24';
+let TYPE_COLORS = { bank: '#34C796', stocks: '#74EBC2', crypto: '#46E0A8', other: 'rgba(233,241,236,0.4)' };
+let SUBS_COLOR = '#E8B84B';
 const THEMES = [
-  { key: 'nocturne', label: 'Nocturne', swatch: '#8B7CFF' },
-  { key: 'aurora', label: 'Aurora', swatch: 'linear-gradient(135deg,#8B7BFF,#4FE3D0)' },
-  { key: 'daylight', label: 'Daylight', swatch: '#6A45FF' },
+  { key: 'nocturne', label: 'Nocturne', swatch: '#34C796' },
+  { key: 'aurora', label: 'Aurora', swatch: 'linear-gradient(135deg,#2FD9A0,#4FE3D0)' },
+  { key: 'daylight', label: 'Daylight', swatch: '#0E9E72' },
 ];
 const THEME_PALETTES = {
-  nocturne: { bank: '#8B7CFF', stocks: '#C7BBFF', crypto: '#46E0A8', other: 'rgba(243,242,248,0.4)', subs: '#FBBF24' },
-  aurora:   { bank: '#8B7BFF', stocks: '#B9ABFF', crypto: '#4FE3D0', other: 'rgba(220,225,255,0.4)', subs: '#FFC65C' },
-  daylight: { bank: '#6A45FF', stocks: '#9E84FF', crypto: '#0E9E64', other: 'rgba(23,22,34,0.4)', subs: '#B4690E' },
+  nocturne: { bank: '#34C796', stocks: '#74EBC2', crypto: '#46E0A8', other: 'rgba(233,241,236,0.4)', subs: '#E8B84B' },
+  aurora:   { bank: '#2FD9A0', stocks: '#7CF2CC', crypto: '#4FE3D0', other: 'rgba(220,225,255,0.4)', subs: '#FFC65C' },
+  daylight: { bank: '#0E9E72', stocks: '#9E84FF', crypto: '#0E9E64', other: 'rgba(15,26,22,0.4)', subs: '#B4690E' },
 };
-let currentTheme = (function(){ try { return localStorage.getItem('patron_theme') || 'nocturne'; } catch(e){ return 'nocturne'; } })();
+let currentTheme = (function(){ try { return localStorage.getItem('A.OS_theme') || 'nocturne'; } catch(e){ return 'nocturne'; } })();
 if (!THEME_PALETTES[currentTheme]) currentTheme = 'nocturne';
 function applyTheme(name){
   if (!THEME_PALETTES[name]) name = 'nocturne';
@@ -771,7 +771,7 @@ function applyTheme(name){
   const p = THEME_PALETTES[name];
   TYPE_COLORS = { bank: p.bank, stocks: p.stocks, crypto: p.crypto, other: p.other };
   SUBS_COLOR = p.subs;
-  try { localStorage.setItem('patron_theme', name); } catch(e){}
+  try { localStorage.setItem('A.OS_theme', name); } catch(e){}
   render();
 }
 const TYPE_LABELS = { bank: 'Bank', stocks: 'Stocks', crypto: 'Crypto', other: 'Other' };
@@ -790,7 +790,7 @@ function headerHtml() {
   const themeSeg = THEMES.map(t => '<button type="button" class="themeBtn ' + (t.key === currentTheme ? 'themeBtnActive' : '') + '" data-act="theme" data-theme="' + t.key + '"><span class="themeSwatch" style="background:' + t.swatch + '"></span>' + t.label + '</button>').join('');
   const segs = CURRENCIES.map(c => '<button type="button" class="currencyBtn ' + (c === state.currency ? 'currencyBtnActive' : '') + '" data-act="currency" data-c="' + c + '">' + c + '</button>').join('');
   return '<header class="header"><div class="headerLeft">'
-    + '<a class="back" href="index.html"><span class="backArrow">←</span> Rowan</a>'
+    + '<a class="back" href="index.html"><span class="backArrow">←</span> A.OS</a>'
     + '<h1 class="title">Finance</h1><p class="subtitle">Net worth · subs · orders · wishlist</p>'
     + '</div>'
     + '<div class="headerRight">'
@@ -1453,7 +1453,7 @@ function applyImport(kind, items) {
  *     output tokens are the priciest part.
  *  Robustness: parse the tool_use block; on a malformed/empty result retry
  *  once, then surface { error }. Auth errors (401/403) are not retried.
- *  NOTE: keys are server-side-only in the hosted Rowan app; this is the
+ *  NOTE: keys are server-side-only in the hosted A.OS app; this is the
  *  standalone, so the call is browser-direct with the user's own key. There is
  *  no route handler / sharp / tier-gate here — those are hosted-app concerns.
  * ============================================================ */
@@ -1718,3 +1718,5 @@ applyTheme(currentTheme);
 <script src="cloud-sync.js?v=15"></script>
 </body>
 </html>
+
+

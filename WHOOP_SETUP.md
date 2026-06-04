@@ -32,8 +32,10 @@ Opened as a local file, the dashboard falls back to **Apple Watch / Manual** ent
 | `GET /api/whoop/logout` | Forgets the stored token (disconnect). |
 
 The returned vitals (recovery, HRV, resting HR, sleep, strain) are written to the
-suite-wide `patron_health_v1` record, so the Supplements recommender picks them up
+suite-wide `A.OS_health_v1` record, so the Supplements recommender picks them up
 automatically — same as manual or Apple Watch entry, just live.
 
 > A forker without WHOOP env vars set just sees the **Apple Watch / Manual** options;
 > nothing breaks.
+
+

@@ -4,21 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="manifest" href="manifest.webmanifest" />
-<meta name="theme-color" content="#0C0C12" />
+<meta name="theme-color" content="#070B0A" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Patron" />
+<meta name="apple-mobile-web-app-title" content="A.OS" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="icon" type="image/svg+xml" href="icon.svg" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
-<title>Macros · Rowan</title>
+<title>Macros · A.OS</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("patron_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("A.OS_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
 <link rel="stylesheet" href="theme.css" />
 
 <style>
@@ -27,16 +27,16 @@
   @media (max-width: 560px) { .macroGrid { grid-template-columns: repeat(2, 1fr); } }
   .macroBox { display:flex; flex-direction:column; gap:4px; padding: var(--space-4); border:1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); }
   .macroBox[data-accent="cal"] { border-color: var(--brand-line); background: var(--brand-soft); }
-  .macroVal { font-family: var(--font-display); font-weight:600; font-size: var(--text-2xl); letter-spacing:-0.02em; font-variant-numeric: tabular-nums; }
+  .macroVal { font-family: var(--font-display); font-style: italic; font-weight:600; font-size: var(--text-2xl); letter-spacing:-0.02em; font-variant-numeric: tabular-nums; }
   .macroLabel { font-family: var(--font-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color: var(--muted); }
 
   /* MyFitnessPal-style header: Goal − Food = Remaining + a progress bar */
   .calHead { display:flex; align-items:center; justify-content:space-between; gap: var(--space-4); flex-wrap:wrap; margin-bottom: var(--space-4); }
   .calMath { display:flex; align-items:center; gap: var(--space-5); flex-wrap:wrap; }
   .calCell { display:flex; flex-direction:column; gap:2px; }
-  .calCell .n { font-family: var(--font-display); font-weight:600; font-size: var(--text-2xl); letter-spacing:-0.02em; font-variant-numeric: tabular-nums; }
+  .calCell .n { font-family: var(--font-display); font-style: italic; font-weight:600; font-size: var(--text-2xl); letter-spacing:-0.02em; font-variant-numeric: tabular-nums; }
   .calCell .l { font-family: var(--font-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color: var(--muted); }
-  .calOp { font-family: var(--font-display); font-size: var(--text-xl); color: var(--muted); }
+  .calOp { font-family: var(--font-display); font-style: italic; font-size: var(--text-xl); color: var(--muted); }
   .calCell.remain .n { color: var(--brand); }
   .calCell.remain.over .n { color: var(--neg); }
   .goalEdit { display:flex; align-items:center; gap:8px; }
@@ -58,7 +58,7 @@
   .logRow .nums { font-family: var(--font-mono); font-size:11px; color: var(--muted-strong); }
   .xBtn { background:transparent; border:1px solid var(--border); color:var(--muted); width:26px; height:26px; border-radius:50%; cursor:pointer; flex-shrink:0; }
   .xBtn:hover { color: var(--neg); border-color: var(--neg-line); }
-  .sectionTitle { font-family: var(--font-display); font-weight:600; font-size: var(--text-lg); margin: var(--space-8) 0 0; }
+  .sectionTitle { font-family: var(--font-display); font-style: italic; font-weight:600; font-size: var(--text-lg); margin: var(--space-8) 0 0; }
 </style>
 </head>
 <body>
@@ -195,7 +195,7 @@ function headerHtml(){
 function render(){
   document.getElementById('app').innerHTML =
     headerHtml() + summaryHtml() + searchHtml() + logHtml();
-  document.getElementById('themeSeg').innerHTML = Patron.switcherHtml();
+  document.getElementById('themeSeg').innerHTML = A.OS.switcherHtml();
 }
 
 /* ---- events ---- */
@@ -245,3 +245,5 @@ render();
 </script>
 </body>
 </html>
+
+

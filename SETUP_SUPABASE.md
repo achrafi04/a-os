@@ -8,7 +8,7 @@ Follow top to bottom. Do steps 1–4 ONCE. Do step 5 on BOTH devices.
 
 ## 2. New project
 - Click **New project**
-- Name it whatever your folder is (Patron-Rowan2)
+- Name it whatever your folder is (A.OS-A.OS2)
 - Set a database password (save it somewhere)
 - Pick the closest region → **Create**
 - Wait ~1 min for it to finish
@@ -70,3 +70,5 @@ end $$;
 - Other device → ☁ → **⤓ Pull cloud down**
 
 Done. Finance, water, gym, goals, supplements + progress photos now sync across phone + PC automatically.
+
+

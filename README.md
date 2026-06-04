@@ -1,12 +1,12 @@
-# Rowan — a self-hosted personal dashboard
+# A.OS — a self-hosted personal dashboard
 
 A suite of nine single-file apps tied together by one bento **hub** (`index.html`),
-one design system ("Patron" — soft-dark electric-violet), and one shared theme.
+one design system ("A.OS" — soft-dark electric-violet), and one shared theme.
 Fork it, deploy it (or just open it), make it yours.
 
 ### 🚀 Get your own copy live in one click
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ohwisey/patron)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ohwisey/A.OS)
 
 Click the button → it copies this repo to your GitHub and deploys it automatically.
 No fork, no setup — you get a live `your-app.vercel.app` link in about a minute.
@@ -44,8 +44,8 @@ and no account. Two consequences, stated plainly:
 - **Per-browser, not synced:** a different device = different data, and clearing your
   browser data erases it. Treat it like a local app, not a cloud service.
 
-Shared keys used across the suite: `patron_theme` (theme), `patron_profile_v1` (your
-profile), `patron_health_v1` (vitals — Whoop / Apple Watch / manual).
+Shared keys used across the suite: `A.OS_theme` (theme), `A.OS_profile_v1` (your
+profile), `A.OS_health_v1` (vitals — Whoop / Apple Watch / manual).
 
 ## Optional integrations
 
@@ -107,3 +107,5 @@ MIT — see [`LICENSE`](LICENSE). Fork it, deploy it, make it yours.
 This is a personal-tracking tool, **not** medical, dietary, or financial advice.
 Supplement doses and recommendations are general information — consult a professional.
 You are responsible for any keys, credentials, and data you add.
+
+

@@ -1,5 +1,5 @@
 /* ============================================================
- * theme.js — shared theme engine for the Patron / Rowan suite.
+ * theme.js — shared theme engine for the Patron / A.OS suite.
  *
  * Include this once near the end of <body>:
  *   <script src="theme.js"></script>
@@ -11,9 +11,9 @@
 window.Patron = (function () {
   const KEY = 'patron_theme';
   const THEMES = [
-    { key: 'nocturne', label: 'Nocturne', swatch: '#8B7CFF' },
-    { key: 'aurora',   label: 'Aurora',   swatch: 'linear-gradient(135deg,#8B7BFF,#4FE3D0)' },
-    { key: 'daylight', label: 'Daylight', swatch: '#6A45FF' },
+    { key: 'nocturne', label: 'Nocturne', swatch: '#34C796' },
+    { key: 'aurora',   label: 'Aurora',   swatch: 'linear-gradient(135deg,#2FD9A0,#4FE3D0)' },
+    { key: 'daylight', label: 'Daylight', swatch: '#0E9E72' },
   ];
 
   function current() {

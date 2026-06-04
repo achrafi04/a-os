@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Patron" />
+<meta name="apple-mobile-web-app-title" content="A.OS" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="icon" type="image/svg+xml" href="icon.svg" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
@@ -17,11 +17,11 @@ body{overflow-x:hidden;-webkit-tap-highlight-color:transparent}
 img{max-width:100%;height:auto}
 @media (max-width:480px){input,select,textarea{font-size:16px !important}}
 </style>
-<meta name="theme-color" content="#0C0C12">
+<meta name="theme-color" content="#070B0A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("patron_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("A.OS_theme")||"nocturne");}catch(e){document.documentElement.setAttribute("data-theme","nocturne");}</script>
 <title>Progressive Overload Coach</title>
 
 <!-- =============================================================
@@ -111,57 +111,57 @@ const CONFIG = {
 <style>
 :root {
   color-scheme: dark;
-  --bg: #0C0C12;
-  --bg-card: #15151F;
-  --text-1: #F3F2F8;
-  --text-2: rgba(243,242,248,0.74);
-  --text-3: rgba(243,242,248,0.50);
-  --text-4: rgba(243,242,248,0.30);
+  --bg: #070B0A;
+  --bg-card: #0E1614;
+  --text-1: #E9F1EC;
+  --text-2: rgba(233,241,236,0.74);
+  --text-3: rgba(233,241,236,0.50);
+  --text-4: rgba(233,241,236,0.30);
   --border: rgba(255,255,255,0.08);
   --border-strong: rgba(255,255,255,0.17);
-  --accent: #8B7CFF;
+  --accent: #34C796;
   --good: #46E0A8;
-  --warn: #FBBF24;
+  --warn: #E8B84B;
   --bad: #FB7185;
-  --brand: #8B7CFF; --brand-2: #C7BBFF; --brand-ink: #130E2E;
-  --brand-soft: rgba(139,124,255,0.12); --brand-line: rgba(139,124,255,0.28); --brand-glow: rgba(139,124,255,0.42);
+  --brand: #34C796; --brand-2: #74EBC2; --brand-ink: #04130D;
+  --brand-soft: rgba(52,199,150,0.12); --brand-line: rgba(52,199,150,0.28); --brand-glow: rgba(52,199,150,0.42);
   --good-rgb: 70,224,168;
   --fill-1: rgba(255,255,255,0.028);
   --fill-2: rgba(255,255,255,0.05);
   --fill-3: rgba(255,255,255,0.07);
   --fill-4: rgba(255,255,255,0.10);
-  --body-glow: rgba(139,124,255,0.10);
-  --tabbar-grad: linear-gradient(180deg, rgba(10,10,16,0) 0%, rgba(10,10,16,0.82) 40%, rgba(10,10,16,0.95) 100%);
-  --tabbar-pill: rgba(26,26,36,0.82);
+  --body-glow: rgba(52,199,150,0.10);
+  --tabbar-grad: linear-gradient(180deg, rgba(6,11,10,0) 0%, rgba(6,11,10,0.82) 40%, rgba(6,11,10,0.95) 100%);
+  --tabbar-pill: rgba(14,22,20,0.82);
   --font: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+  --font-display: 'Newsreader', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SF Mono, Menlo, Consolas, monospace;
 }
 [data-theme="aurora"] {
   color-scheme: dark;
-  --bg: #080913; --bg-card: #12131F;
+  --bg: #04100C; --bg-card: #0A1A14;
   --text-1: #EEF0FF; --text-2: rgba(220,225,255,0.76); --text-3: rgba(220,225,255,0.52); --text-4: rgba(220,225,255,0.30);
-  --border: rgba(150,160,255,0.11); --border-strong: rgba(150,160,255,0.22);
-  --accent: #8B7BFF; --good: #4FE3D0; --warn: #FFC65C; --bad: #FF6FA5;
-  --brand: #8B7BFF; --brand-2: #B9ABFF; --brand-ink: #0A0922;
-  --brand-soft: rgba(139,123,255,0.15); --brand-line: rgba(139,123,255,0.32); --brand-glow: rgba(124,107,255,0.6);
+  --border: rgba(90,255,205,0.11); --border-strong: rgba(90,255,205,0.22);
+  --accent: #2FD9A0; --good: #4FE3D0; --warn: #FFC65C; --bad: #FF6FA5;
+  --brand: #2FD9A0; --brand-2: #7CF2CC; --brand-ink: #03130C;
+  --brand-soft: rgba(47,217,160,0.15); --brand-line: rgba(47,217,160,0.32); --brand-glow: rgba(47,217,160,0.6);
   --good-rgb: 79,227,208;
-  --fill-1: rgba(150,160,255,0.05); --fill-2: rgba(150,160,255,0.08); --fill-3: rgba(150,160,255,0.11); --fill-4: rgba(150,160,255,0.15);
-  --body-glow: rgba(124,107,255,0.18);
+  --fill-1: rgba(90,255,205,0.05); --fill-2: rgba(90,255,205,0.08); --fill-3: rgba(90,255,205,0.11); --fill-4: rgba(90,255,205,0.15);
+  --body-glow: rgba(47,217,160,0.18);
   --tabbar-grad: linear-gradient(180deg, rgba(8,9,19,0) 0%, rgba(8,9,19,0.82) 40%, rgba(8,9,19,0.96) 100%);
   --tabbar-pill: rgba(18,19,32,0.85);
 }
 [data-theme="daylight"] {
   color-scheme: light;
-  --bg: #F3F2FA; --bg-card: #FFFFFF;
-  --text-1: #171622; --text-2: rgba(23,22,34,0.72); --text-3: rgba(23,22,34,0.52); --text-4: rgba(23,22,34,0.34);
-  --border: rgba(23,22,60,0.10); --border-strong: rgba(23,22,60,0.18);
-  --accent: #6A45FF; --good: #0E9E64; --warn: #B4690E; --bad: #E11D63;
-  --brand: #6A45FF; --brand-2: #8E6BFF; --brand-ink: #FFFFFF;
-  --brand-soft: rgba(106,69,255,0.08); --brand-line: rgba(106,69,255,0.24); --brand-glow: rgba(106,69,255,0.28);
+  --bg: #F1F6F3; --bg-card: #FFFFFF;
+  --text-1: #0F1A16; --text-2: rgba(15,26,22,0.72); --text-3: rgba(15,26,22,0.52); --text-4: rgba(15,26,22,0.34);
+  --border: rgba(15,40,30,0.10); --border-strong: rgba(15,40,30,0.18);
+  --accent: #0E9E72; --good: #0E9E64; --warn: #B4690E; --bad: #E11D63;
+  --brand: #0E9E72; --brand-2: #3FC79A; --brand-ink: #FFFFFF;
+  --brand-soft: rgba(14,158,114,0.08); --brand-line: rgba(14,158,114,0.24); --brand-glow: rgba(14,158,114,0.28);
   --good-rgb: 14,158,100;
-  --fill-1: rgba(23,22,60,0.028); --fill-2: rgba(23,22,60,0.05); --fill-3: rgba(23,22,60,0.07); --fill-4: rgba(23,22,60,0.10);
-  --body-glow: rgba(106,69,255,0.07);
+  --fill-1: rgba(15,40,30,0.028); --fill-2: rgba(15,40,30,0.05); --fill-3: rgba(15,40,30,0.07); --fill-4: rgba(15,40,30,0.10);
+  --body-glow: rgba(14,158,114,0.07);
   --tabbar-grad: linear-gradient(180deg, rgba(243,242,250,0) 0%, rgba(243,242,250,0.85) 40%, rgba(243,242,250,0.97) 100%);
   --tabbar-pill: rgba(255,255,255,0.92);
 }
@@ -1323,10 +1323,10 @@ img, video, canvas, svg { max-width: 100%; }
 
 .hidden { display: none !important; }
 
-/* --- Patron display type --- */
+/* --- A.OS display type --- */
 .po-title, .wt-num, .po-rx-headline, .po-tw-summary-num, .po-stat-val,
 .wt-overlay-title, .po-modal h3, .wt-viewer-weight, .wt-comp-headline {
-  font-family: var(--font-display);
+  font-family: var(--font-display); font-style: italic;
   letter-spacing: -0.02em;
 }
 .po-title { font-weight: 600; }
@@ -1512,11 +1512,11 @@ img, video, canvas, svg { max-width: 100%; }
 
   </div>
 
-  <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin-bottom:14px;padding:6px 13px 6px 9px;background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:999px;color:var(--brand);font-size:12px;font-weight:600;letter-spacing:.01em;text-decoration:none">← Rowan</a>
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin-bottom:14px;padding:6px 13px 6px 9px;background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:999px;color:var(--brand);font-size:12px;font-weight:600;letter-spacing:.01em;text-decoration:none">← A.OS</a>
   <div class="po-header">
     <h1 class="po-title" id="appTitle">Progressive Overload Coach</h1>
     <div class="po-header-right">
-      <div class="themeSeg" role="radiogroup" aria-label="Theme"><button type="button" class="themeBtn" data-theme="nocturne"><span class="themeSwatch" style="background:#8B7CFF"></span><span class="themeBtnLabel">Nocturne</span></button><button type="button" class="themeBtn" data-theme="aurora"><span class="themeSwatch" style="background:linear-gradient(135deg,#8B7BFF,#4FE3D0)"></span><span class="themeBtnLabel">Aurora</span></button><button type="button" class="themeBtn" data-theme="daylight"><span class="themeSwatch" style="background:#6A45FF"></span><span class="themeBtnLabel">Daylight</span></button></div>
+      <div class="themeSeg" role="radiogroup" aria-label="Theme"><button type="button" class="themeBtn" data-theme="nocturne"><span class="themeSwatch" style="background:#34C796"></span><span class="themeBtnLabel">Nocturne</span></button><button type="button" class="themeBtn" data-theme="aurora"><span class="themeSwatch" style="background:linear-gradient(135deg,#2FD9A0,#4FE3D0)"></span><span class="themeBtnLabel">Aurora</span></button><button type="button" class="themeBtn" data-theme="daylight"><span class="themeSwatch" style="background:#0E9E72"></span><span class="themeBtnLabel">Daylight</span></button></div>
     <button class="po-icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
     </button>
@@ -3428,9 +3428,9 @@ img, video, canvas, svg { max-width: 100%; }
   // just only on this device (data stays in your browser).
   // ============================================================
   // Supabase keys come from localStorage (pasted in Settings) or, if blank, from
-  // PatronDB which loads them from /api/config (Vercel env vars). No keys in code.
-  const SUPABASE_URL = ((localStorage.getItem('po_supabase_url') || '').trim()) || ((window.PatronDB && PatronDB.cfgUrl && PatronDB.cfgUrl()) || '');
-  const SUPABASE_KEY = ((localStorage.getItem('po_supabase_key') || '').trim()) || ((window.PatronDB && PatronDB.cfgKey && PatronDB.cfgKey()) || '');
+  // A.OSDB which loads them from /api/config (Vercel env vars). No keys in code.
+  const SUPABASE_URL = ((localStorage.getItem('po_supabase_url') || '').trim()) || ((window.A.OSDB && A.OSDB.cfgUrl && A.OSDB.cfgUrl()) || '');
+  const SUPABASE_KEY = ((localStorage.getItem('po_supabase_key') || '').trim()) || ((window.A.OSDB && A.OSDB.cfgKey && A.OSDB.cfgKey()) || '');
   const APP_KEY = 'po-coach';
   // Note: po_coach_photos IS synced, but only URL-pointer entries ride
   // the wire. The actual JPEG lives in Supabase Storage. pcCollectState
@@ -3644,6 +3644,8 @@ img, video, canvas, svg { max-width: 100%; }
 })();
 </script>
 
-<script>(function(){function cur(){try{return localStorage.getItem("patron_theme")||"nocturne";}catch(e){return "nocturne";}}function paint(){var c=cur();document.querySelectorAll(".themeBtn").forEach(function(b){b.classList.toggle("themeBtnActive",b.dataset.theme===c);});}document.addEventListener("click",function(e){var b=e.target.closest(".themeBtn");if(!b)return;var n=b.dataset.theme;document.documentElement.setAttribute("data-theme",n);try{localStorage.setItem("patron_theme",n);}catch(e){}paint();});paint();})();</script>
+<script>(function(){function cur(){try{return localStorage.getItem("A.OS_theme")||"nocturne";}catch(e){return "nocturne";}}function paint(){var c=cur();document.querySelectorAll(".themeBtn").forEach(function(b){b.classList.toggle("themeBtnActive",b.dataset.theme===c);});}document.addEventListener("click",function(e){var b=e.target.closest(".themeBtn");if(!b)return;var n=b.dataset.theme;document.documentElement.setAttribute("data-theme",n);try{localStorage.setItem("A.OS_theme",n);}catch(e){}paint();});paint();})();</script>
 </body>
 </html>
+
+

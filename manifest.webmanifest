@@ -1,13 +1,13 @@
 {
-  "name": "Patron — Rowan",
-  "short_name": "Patron",
+  "name": "A.OS — A.OS",
+  "short_name": "A.OS",
   "description": "Your personal health, training, finance & creator dashboard.",
   "start_url": "index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0C0C12",
-  "theme_color": "#0C0C12",
+  "background_color": "#070B0A",
+  "theme_color": "#070B0A",
   "icons": [
     { "src": "icon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
     { "src": "icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
@@ -16,3 +16,5 @@
     { "src": "icon-maskable-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
   ]
 }
+
+
